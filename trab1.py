@@ -30,3 +30,4 @@
 # - Ordenar essa lista e retornar
 
 # d) Forneça a identidade do(s) robô(s) que conseguiu(ram) informar o maior número de vítimas (considerando que não há duplicação de identificação de vítima por um mesmo robô).
+def idMaisVitimas()
