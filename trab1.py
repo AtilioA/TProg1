@@ -12,7 +12,7 @@
 
 # Considerando uma lista com tais informações como os dados de entrada disponíveis, faça um programa em Python que responda às seguintes solicitações:
 # Suposta entrada (Jordana ainda não enviou exemplos):
-# listaRobos = [(id1, instante1, ponto1, nVítimas1), (id2, instante2, ponto2, nVítimas2)]
+# listaRobôs = [(id1, instante1, ponto1, nVítimas1), (id2, instante2, ponto2, nVítimas2)]
 # Compreensão do problema e planejamento da solução
 
 # "(Ao importar funções de algum módulo, utilize a opção de importação específica)"
@@ -52,9 +52,13 @@ def template(entradas):
 # - Função para extrair uma tupla de uma lista dado um elemento identificador da tupla
 # - Função para calcular a distância entre os pontos percorridos pelo robô, por ordem de instante
 # - Função para ordenar lista por instante (talvez não precise disso, precisamos ver o exemplo de entrada)
-# - Função para somar todos os elementos de uma lista
+# - Função para somar todos os elementos de uma lista - FAZ ISSO ÍCARO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-def distRobô(listaRobos, id):
+def distRobô(listaRobôs): # Versão sem ID
+
+    return
+
+def distRobôID(listaRobôs, id):
     ''' Função: distRobô
     Descrição: Calcula a distância total que um robô percorreu
     Escopo: função global paramétrica
@@ -96,8 +100,8 @@ def distEuclid(p1, p2):
 # - Função para determinar tempo de percurso de um robô, dado seu percurso
 # - Função para imprimir percurso de um robô
 
-def últimosPontosRobôs(listaRobos): # Separar em funções menores
-    percursos = map(tupla3(listaRobos)) # Supostamente pega a lista de percursos de todos os robôs
+def últimosPontosRobôs(listaRobôs): # Separar em funções menores
+    percursos = map(tupla3(listaRobôs)) # Supostamente pega a lista de percursos de todos os robôs
     últimosPontos = list(map(lambda lista: lista[-1], percursos)) # Pega o último ponto de cada robô
     distOrigemRobôs = map(lambda ponto: distEuclid(0, ponto), últimosPontos) # Supostamente calcula distância da origem até o ponto, para cada ponto
 
@@ -107,13 +111,25 @@ def últimosPontosRobôs(listaRobos): # Separar em funções menores
 # ordenados crescentemente pela distância total percorrida;
 
 # COMPREENSÃO DO PROBLEMA: deve-se calcular as distâncias percorridas por todos os robôs, adicionando-as
-# em uma lista que será ordenada e então retornada
+# em uma lista que será ordenada, imprimida na tela e então retornada
 
 # PLANEJAMENTO:
 # Criar as seguintes funções:
 # - Função para ordenar lista em ordem crescente - OK
-# - Função para aplicar a função da questão (a) em todos os robôs da lista de entrada
-# - Ordenar essa lista de distâncias e retornar (a menos que queira a lista de tuplas original, ver isso depois)
+# - Função para aplicar a função da questão (a) em todos os robôs da lista de entrada - OK?
+# - Ordenar essa lista de distâncias e retornar (a menos que queira a lista de tuplas original, ver isso depois) - OK?
+
+def exibeCaminhosRobôsCrescente(listaRobôs):
+    ''' Função exibeCaminhosRobôsCrescente()
+    Descrição: Dada a lista de robôs, imprime o caminho de cada robô (em ordem crescente de distância)
+    Escopo: Função global paramétrica
+    Dados de entrada: A lista de dados sobre os robôs
+    Dados de saída: Uma lista de distâncias ordenada
+    '''
+    listaDistâncias = map(distRobô(listaRobôs))
+    listaDistânciasOrdenadas = mergeSort(listaDistâncias)
+    print(listaDistânciasOrdenadas)
+    return listaDistânciasOrdenadas
 
 
 def mergeOrdenada(l1, l2):
@@ -154,6 +170,7 @@ def mergeSort(lista):
         metade = len(lista) // 2 # Pega o índice do meio da lista
         return mergeOrdenada(mergeSort(lista[:metade]), mergeSort(lista[metade:]))
 
+
 # ============ QUESTÃO D ============ #
 # d) Forneça a identidade do(s) robô(s) que conseguiu(ram) informar o maior número de vítimas (considerando que não há duplicação de identificação de vítima por um mesmo robô).
 
@@ -167,21 +184,36 @@ def mergeSort(lista):
 # - Extrair maior número da lista obtida no último item
 # - Buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs.
 
-def idMaisVitimas(listaRobos):
-    ''' Função idMaisVitimas
+def idMaisVítimas(listaRobôs):
+    ''' Função idMaisVítimas
     Descrição: Retorna os ids do robôs que avistaram o maior número de vítimas
     Escopo: Função global paramétrica
     Dados de entrada: lista com informações sobre todos os robôs
     Dados de saída: lista com ids de robôs (pode haver mais de um) que avistaram o maior número de vítimas
     '''
+    def vítimasRobôs(listaRobôs): # Algo nesse sentido
+        return map(tupla4(listaRobôs))
+
+    def totalVítimasRobôs(listaRobôs):
+        listaVítimas = vítimasRobôs(listaRobôs)
+        return map(somaLista(listaVítimas))
+
+    totalVítimasRobôsLista = totalVítimasRobôs(listaRobôs)
+    nMaisVítimas = maiorLista(totalVítimasRobôsLista)
+
+    def elementosLista(lista, n): # testando ainda
+        if lista[0] == n and len(lista) < 2:
+            return [lista[0]]
+        elif lista[0] == n:
+            return [lista[0]] + elementosLista(lista[1:], n)
 
 
-# ============ TESTES ============
+# ============ TESTES ============ #
 # "Os testes propriamente ditos devem estar automatizados no arquivo de código"
 # Aqui ficarão os testes do programa, inclusive os testes que estarão na versão final
 dist01 = distEuclid((0,0),(1,1))
 print(f"Distância entre (0,0 e (1,1): {dist01}")
 
-listaTeste = [random.randrange(1, 100) for _ in range(0, 10000)]
+listaTeste = [random.randrange(1, 100) for _ in range(0, 100)]
 print(listaTeste)
 print(mergeSort(listaTeste))
