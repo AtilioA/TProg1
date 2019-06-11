@@ -41,7 +41,7 @@ def template(entradas):
 
 listaRobôs = [('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2), ('robo3', 3, (5, 4), 3), ('robo3', 4, (8, 1), 4), ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4), ('robo5', 7, (6, 4), 5), ('robo3', 8, (7, 2), 3), ('robo5', 9, (6, 4), 4)]
 
-# ============ QUESTÃO A ============ #
+# ============ QUESTÃO A ============ # - OK
 # a) Calcular a distância percorrida por um determinado robô ao longo do processo de resgate das vítimas.
 # Considere que a distância total percorrida deve ser calculada como a soma de todas as distâncias entre os
 # pontos de passagem do robô;
@@ -65,6 +65,14 @@ def distEuclid(p1, p2):
     return sqrt((tupla1(p1) - tupla1(p2))**2 + (tupla2(p1) - tupla2(p2))**2)
 
 def listaTuplaRobôID(listaRobôs, id):
+    ''' Função: listaTuplaRobôID()
+    Descrição: Extrai todas as tuplas de um mesmo robô da lista de robôs de entrada
+    Escopo: função global paramétrica
+    Dados de entrada: lista de robôs de entrada e id de um robô
+    Dados de saída: tuplas de informações um único robô da lista de robôs
+    Se não houver robô com o id fornecido ou o robô tiver percorrido menos de 2 pontos, retorna -1
+    '''
+
     # def robôEscolhido(robo, id):
     #     if (tupla1(robo)) == f'robo{id}':
     #         return True
@@ -76,26 +84,58 @@ def listaTuplaRobôID(listaRobôs, id):
 
 
 # - Função para calcular a distância entre os pontos percorridos pelo robô
-def pegaPontosRobô(listaRobôs, id): # - OK
+def pegaPontosRobô(listaRobôs, id):
+    ''' Função: pegaPontosRobô()
+    Descrição: Extrai todos os pontos percorridos por um mesmo robô da lista de robôs de entrada
+    Escopo: função global paramétrica
+    Dados de entrada: lista de robôs de entrada e id de um robô
+    Dados de saída: lista de todos os pontos percorridos por um único robô da lista de robôs
+    '''
+
     tuplasRobô = listaTuplaRobôID(listaRobôs, id)
     return list(map(tupla3, tuplasRobô))
 
 
-def distanciaTotal(pontos):
+def pegaPontosTuplaRobô(tuplasRobô):
+    ''' Função: pegaPontosTuplaRobô()
+    Descrição: Cria todos os pontos percorridos por um robô de uma lista de tuplas de informações um mesmo robô
+    Escopo: função global paramétrica
+    Dados de entrada: lista de tuplas de um robô
+    Dados de saída: lista de todos os pontos percorridos pelo robô
+    '''
+
+    return list(map(tupla3, tuplasRobô))
+
+
+def distânciaTotal(pontos):
+    ''' Função: distânciaTotal()
+    Descrição: Calcula a distância total entre uma lista de pontos somando
+    a distância entre um ponto e o próximo até o fim da lista
+    Escopo: função global paramétrica
+    Dados de entrada: Lista de pontos
+    Dados de saída: Distância total somando a distância entre um ponto e o próximo até o fim da lista
+    '''
+
     if len(pontos) < 2:
-        return 0
+        return -1
     elif len(pontos) == 2:
         return distEuclid(pontos[0], pontos[1])
     else:
-        return distEuclid(pontos[0], pontos[1]) + distanciaTotal(pontos[1:])
+        return distEuclid(pontos[0], pontos[1]) + distânciaTotal(pontos[1:])
 
-    return distanciaTotal(distânciasRobô)
+    return distânciaTotal(distânciasRobô)
 
 
-def distanciaTotalRobô(listaRobôs, id):
+def distânciaTotalRobô(listaRobôs, id):
+    ''' Função: distânciaTotalRobô() zoada
+    Descrição: Calcula a distância percorrida por um robô da lista de robôs dado seu id
+    Escopo: função global paramétrica
+    Dados de entrada: lista de tuplas de um robô
+    Dados de saída: lista de todos os pontos percorridos pelo robô
+    '''
     tuplasRobô = listaTuplaRobôID(listaRobôs, id)
-    pontosPercorridosRobô = pegaPontosRobô(listaRobôs, id)
-    return distanciaTotal(pontosPercorridosRobô)
+    pontosPercorridosRobô = pegaPontosTuplaRobô(tuplasRobô)
+    return distânciaTotal(pontosPercorridosRobô)
 
 
 # def distRobô(listaRobôs): # Versão sem ID
@@ -122,11 +162,14 @@ def distanciaTotalRobô(listaRobôs, id):
 # - Função para determinar tempo de percurso de um robô, dado seu percurso
 # - Função para imprimir percurso de um robô
 
-def últimosPontosRobôs(listaRobôs): # Separar em funções menores
-    percursos = map(tupla3(listaRobôs)) # Supostamente pega a lista de percursos de todos os robôs
-    últimosPontos = list(map(lambda lista: lista[-1], percursos)) # Pega o último ponto de cada robô
-    distOrigemRobôs = map(lambda ponto: distEuclid(0, ponto), últimosPontos) # Supostamente calcula distância da origem até o ponto, para cada ponto
+def últimosPontosRobôs(listaRobôs): # Separar em funções menores ZOADISSIMA
+    # percursos = list(map(tupla3, listaRobôs)) # Supostamente pega a lista de percursos de todos os robôs
+    # últimosPontos = list(map(lambda lista: , percursos)) # Pega o último ponto de cada robô
+    # distOrigemRobôs = list(map(lambda ponto: distEuclid(0, ponto), últimosPontos)) # Supostamente calcula distância da origem até o ponto, para cada ponto
+    # return percursos
+    return 1
 
+# print(últimosPontosRobôs(listaRobôs))
 
 # ============ QUESTÃO C ============ #
 # c) Exiba os caminhos percorridos por todos os robôs que entraram no terreno de busca,
@@ -247,5 +290,5 @@ def idMaisVítimas(listaRobôs):
 # pontos2 = [(1,1)]
 # pontos3 = [(1,1), (3,1)]
 # pontos4 = [(1,1), (3,1), (6,1)]
-# print(distanciaTotal(pontos1), distanciaTotal(pontos2), distanciaTotal(pontos3), distanciaTotal(pontos4))
-# print(distanciaTotalRobô(listaRobôs, 'robo3'))
+# print(distânciaTotal(pontos1), distânciaTotal(pontos2), distânciaTotal(pontos3), distânciaTotal(pontos4))
+print(distânciaTotalRobô(listaRobôs, 'robo4'))
