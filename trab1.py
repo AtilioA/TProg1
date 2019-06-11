@@ -19,6 +19,7 @@
 import random
 from roboAux import *
 from math import *
+from functools import reduce
 import sys # Para testes (mergeSort por exemplo) apenas, não irá para a versão final
 sys.setrecursionlimit(10000) # Para aumentar limite de recursão do Python
 
