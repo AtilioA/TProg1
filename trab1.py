@@ -11,8 +11,9 @@
 # o número de vítimas presentes na área de visibilidade do robô.
 
 # Considerando uma lista com tais informações como os dados de entrada disponíveis, faça um programa em Python que responda às seguintes solicitações:
-# Suposta entrada (Jordana ainda não enviou exemplos):
+# Entrada no modelo:
 # listaRobôs = [(id1, instante1, ponto1, nVítimas1), (id2, instante2, ponto2, nVítimas2)]
+
 # Compreensão do problema e planejamento da solução
 
 # "(Ao importar funções de algum módulo, utilize a opção de importação específica)"
@@ -38,6 +39,7 @@ def template(entradas):
 
     # Resto da função. A validação ocorre aqui, com try, Exception() e etc
 
+listaRobôs = [('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2), ('robo3', 3, (5, 4), 3), ('robo3', 4, (8, 1), 4), ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4), ('robo5', 7, (6, 4), 5), ('robo3', 8, (7, 2), 3), ('robo5', 9, (6, 4), 4)]
 
 # ============ QUESTÃO A ============ #
 # a) Calcular a distância percorrida por um determinado robô ao longo do processo de resgate das vítimas.
@@ -50,25 +52,7 @@ def template(entradas):
 # PLANEJAMENTO:
 # Criar as seguintes funções:
 # - Função para cálculo de distância no plano cartesiano - OK
-# - Função para extrair uma tupla de uma lista dado um elemento identificador da tupla
-# - Função para calcular a distância entre os pontos percorridos pelo robô, por ordem de instante
-# - Função para ordenar lista por instante (talvez não precise disso, precisamos ver o exemplo de entrada)
-# - Função para somar todos os elementos de uma lista - FAZ ISSO ÍCARO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-def distRobô(listaRobôs): # Versão sem ID
-
-    return
-
-def distRobôID(listaRobôs, id):
-    ''' Função: distRobô
-    Descrição: Calcula a distância total que um robô percorreu
-    Escopo: função global paramétrica
-    Dados de entrada: a lista de informações dos robôs e o ID de um robô na lista
-    Dados de saída: a distância percorrida por um robô
-    '''
-
-    return
-
+# - Função para extrair tuplas de uma lista dado um elemento identificador das tuplas - OK
 
 def distEuclid(p1, p2):
     ''' Função: distEuclid()
@@ -80,6 +64,43 @@ def distEuclid(p1, p2):
 
     return sqrt((tupla1(p1) - tupla1(p2))**2 + (tupla2(p1) - tupla2(p2))**2)
 
+def listaTuplaRobôID(listaRobôs, id):
+    # def robôEscolhido(robo, id):
+    #     if (tupla1(robo)) == f'robo{id}':
+    #         return True
+    #     else:
+    #         return False
+
+    return list(filter(lambda x: (tupla1(x) == id), listaRobôs))
+    # return [x for x in listaRobôs if tupla1(x) == id]
+
+
+# - Função para calcular a distância entre os pontos percorridos pelo robô
+def pegaPontosRobô(listaRobôs, id): # - OK
+    tuplasRobô = listaTuplaRobôID(listaRobôs, id)
+    return list(map(tupla3, tuplasRobô))
+
+
+def distanciaTotal(pontos):
+    if len(pontos) < 2:
+        return 0
+    elif len(pontos) == 2:
+        return distEuclid(pontos[0], pontos[1])
+    else:
+        return distEuclid(pontos[0], pontos[1]) + distanciaTotal(pontos[1:])
+
+    return distanciaTotal(distânciasRobô)
+
+
+def distanciaTotalRobô(listaRobôs, id):
+    tuplasRobô = listaTuplaRobôID(listaRobôs, id)
+    pontosPercorridosRobô = pegaPontosRobô(listaRobôs, id)
+    return distanciaTotal(pontosPercorridosRobô)
+
+
+# def distRobô(listaRobôs): # Versão sem ID
+
+#     return
 
 # ============ QUESTÃO B ============ #
 # b) Determine qual dos robôs apresenta o seu último ponto de passagem no terreno de busca que
@@ -212,9 +233,19 @@ def idMaisVítimas(listaRobôs):
 # ============ TESTES ============ #
 # "Os testes propriamente ditos devem estar automatizados no arquivo de código"
 # Aqui ficarão os testes do programa, inclusive os testes que estarão na versão final
-dist01 = distEuclid((0,0),(1,1))
-print(f"Distância entre (0,0 e (1,1): {dist01}")
+# dist01 = distEuclid((0,0),(1,1))
+# print(f"Distância entre (0,0 e (1,1): {dist01}")
 
-listaTeste = [random.randrange(1, 100) for _ in range(0, 100)]
-print(listaTeste)
-print(mergeSort(listaTeste))
+# listaTeste = [random.randrange(1, 100) for _ in range(0, 100)]
+# print(listaTeste)
+# print(mergeSort(listaTeste))
+
+# print(listaTuplaRobôID(listaRobôs, 'robo3'))
+
+# Testes A
+# pontos1 = []
+# pontos2 = [(1,1)]
+# pontos3 = [(1,1), (3,1)]
+# pontos4 = [(1,1), (3,1), (6,1)]
+# print(distanciaTotal(pontos1), distanciaTotal(pontos2), distanciaTotal(pontos3), distanciaTotal(pontos4))
+# print(distanciaTotalRobô(listaRobôs, 'robo3'))

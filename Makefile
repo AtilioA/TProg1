@@ -1,13 +1,13 @@
 MAIN := trab1.py
 
 all:
-	python3 ${MAIN}
+	python3.7 ${MAIN}
 
 int:
-	python3 -i ${MAIN}
+	python3.7 -i ${MAIN}
 
 time:
-	time python3 ${MAIN}
+	time python3.7 ${MAIN}
 
 clean:
 	rm -r __pycache__
