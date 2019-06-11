@@ -1,13 +1,31 @@
-\chapter{Implementação}
-\label{sec-implementacao}
+\chapter{Planejamento e implementação}\label{cap-planejamento-implementacao}
+
+\section{Problema A}\label{problemaA}
+\begin{enumerate}[label=\textbf{\alph*)},series=problemas]
+\item Calcular a distância percorrida por um determinado robô ao longo do processo de resgate das vítimas. Considere que a distância total percorrida deve ser calculada como a soma de todas as distâncias entre os pontos de passagem do robô.
+\end{enumerate}
+
+\noindent \textbf{COMPREENSÃO DO PROBLEMA E PLANEJAMENTO}: deve-se extrair a tupla de um robô da lista de entrada, de acordo com o identificador dado. Em seguida, calcular a distância total que o robô percorreu e retornar esse valor.
+
+Sendo assim, podemos criar as seguintes funções para solucionar o problema:
+\begin{enumerate}
+    \item Função para somar todos os elementos de uma lista
+    \item Função para cálculo de distância no plano cartesiano
+    \item Função para extrair uma tupla de uma lista dado um elemento identificador da tupla
+    \item Função para calcular a distância entre os pontos percorridos pelo robô, por ordem de instante\label{itemDistInstante}
+    \item Função para ordenar lista por instante (talvez não precise disso, precisamos ver o exemplo de entrada)
+\end{enumerate}
+
+As duas primeiras são triviais e foram implementadas diversas vezes durante o curso. Na terceira, utilizamos [...] para retornar a tupla que desejávamos. Para o item \ref{itemDistInstante}, [...].
+
+\section{Problema B}\label{problemaB}
+\begin{enumerate}[label=\textbf{\alph*)},resume*=problemas]
+\item Determine qual dos robôs apresenta o seu último ponto de passagem no terreno de busca que possui a maior distância em relação à origem. Exiba o caminho percorrido pelo robô e o tempo total do percurso;
+\end{enumerate}
 
 
-Descrição sobre a implementação dos algoritmos, incluíndo o algoritmo de Huffman. Deve ser detalhada a estrutura de dados utilizada (de preferência com diagramas ilustrativos), o funcionamento dos algoritmos, e decisões tomadas relativas aos detalhes de especificação que porventura estejam omissos no enunciado.
+% # - Extrair, da lista de entrada, o último ponto de passagem de todos os robôs
+% # - Determinar qual robô possui ponto mais longe da origem
+% # - Imprimir caminho percorrido pelo robô, determinar tempo do percurso
 
-
-O pacote \texttt{listings}, incluído neste template, permite a inclusão de listagens de código.  A Listagem NÃO mostra um exemplo de listagem com especificação da linguagem utilizada no código. O pacote \texttt{listings} reconhece algumas linguagens\footnote{Veja a lista de linguagens suportadas em \url{http://en.wikibooks.org/wiki/LaTeX/Source\_Code\_Listings\#Supported_languages}.} e faz ``coloração'' de código (na verdade, usa \textbf{negrito} e não cores) de acordo com a linguagem. O parâmetro \texttt{float=htpb} incluído em ambos os exemplos impede que a listagem seja quebrada em diferentes páginas.
-
-Importante notar que não se deve incluir TODO o código do seu trabalho. Inclua apenas trechos que julgue necessário que sejam discutidos no relatório.
-
-
-% \lstinputlisting[label=lst-intro-exemplo, caption=Exemplo de código C especificando linguagem utilizada., language=C, float=htpb]{codigos/lst-exemplo.c}
+\section{}

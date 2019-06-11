@@ -18,13 +18,12 @@
 \usepackage{fancyhdr}
 \usepackage{lmodern}
 
-
 %%% Definição de variáveis. %%%
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
-\titulo{Análise de desempenho de estruturas de dados para um indexador de arquivos}
-\autor{Atílio Antônio Dadalto \\ Tiago da Cruz Santos}
+\titulo{Auxílio ao resgate de vítimas por robôs em ambientes acidentados}
+\autor{Atílio Antônio Dadalto \\ Ícaro Nascimento Recayd Mob}
 \local{Vitória}
 \data{2019}
 \instituicao{%
@@ -36,10 +35,8 @@
 \newcommand{\versao}{2.0}
 \newcommand{\subtitulo}{Anteprojeto}
 
-
 % Macros específicas do trabalho.
-% (*) Inclua aqui termos que são utilizados muitas vezes e que demandam formatação especial.
-% Os exemplos abaixo incluem i* (substituindo o asterisco por uma estrela) e Java com TM em superscript.
+% Inclua aqui termos que são utilizados muitas vezes e que demandam formatação especial.
 % Use sempre \xspace para que o LaTeX inclua espaço em branco após a macro somente quando necessário.
 \newcommand{\istar}{\textit{i}$^\star$\xspace}
 \newcommand{\java}{Java\texttrademark\xspace}
@@ -73,18 +70,13 @@
 \setlength{\parskip}{0.2cm}
 
 
-
 %%% Páginas iniciais do documento: capa, folha de rosto, ficha, resumo, tabelas, etc. %%%
-
-% Compila o índice. <--- Desnecessário em Plano de Estudo.
-%\makeindex
 
 % Inicia o documento.
 \begin{document}
 
 % Retira espaço extra obsoleto entre as frases.
 \frenchspacing
-
 
 % Brasão da instituição.
 \begin{figure}[h]
@@ -96,15 +88,8 @@
 \imprimircapa
 \imprimirfolhaderosto
 
-% Lista de silgas.
-% (*) Indicar as siglas utilizadas no trabalho como no exemplo abaixo.
-%\begin{siglas}
-    %\item [UML] Linguagem de Modelagem Unificada, do inglês \textit{Unified Modeling Language}
-%\end{siglas}
-
 % Índice de capítulos.
-% \tableofcontents*
-
+\tableofcontents*
 
 %%% Início da parte de conteúdo do documento. %%%
 
@@ -113,16 +98,11 @@
 \textual
 
 % Inclusão dos capítulos.
-% (*) Para facilitar a organização, os capítulos foram divididos em arquivo separados e colocados dentro da.
-% pasta capitulos/. Caso o aluno prefira trabalhar com um só arquivo, basta substituir os comandos \input 
-% pelos conteúdos dos arquivos que estão sendo incluídos, excluindo a pasta capitulos/ em seguida.
-
 \input{cap1.tex}
 \input{cap2.tex}
 \input{cap3.tex}
 \input{cap4.tex}
-\input{cap5.tex}
-
+\input{apendiceA.tex}
 
 % Finaliza a parte no bookmark do PDF para que se inicie o bookmark na raiz e adiciona espaço de parte no sumário.
 \phantompart
