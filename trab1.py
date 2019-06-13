@@ -202,7 +202,7 @@ def mergeOrdenada(l1, l2):
     Descrição: Com duas listas ordenadas de entrada, junta as duas de forma ordenada
     Escopo: Função global paramétrica
     Dados de entrada: Duas listas numéricas ordenadas
-    Dados de saída: Uma lista ordenada gerada a partir da junção ordenada das duas de entrada
+    Dados de saída: Uma lista ordenada tuplasRobôIdda a partir da junção ordenada das duas de entrada
     Pega o primeiro elemento que seja o menor dentre as duas listas
     e junta com o resultado da função chamando com resto da lista "menor"
     Ex: l1 = [1, 2] e l2 = [3, 4]:
@@ -249,6 +249,59 @@ def mergeSort(lista):
 # - Extrair maior número da lista obtida no último item
 # - Buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs.
 
+
+def removeDuplicata(lista):
+    ''' Função removeDuplicata
+    Descrição: Cria uma nova lista dada uma lista de entrada sem elementos duplicados desta
+    Escopo: Função global paramétrica
+    Dados de entrada: lista válida
+    Dados de saída: lista sem elementos duplicados
+    '''
+
+    if len(lista) < 2:
+        return lista
+    elif lista[0] not in lista[1:]:
+        return [lista[0]] + removeDuplicata(lista[1:])
+    else:
+        return removeDuplicata(lista[1:])
+
+
+def idsRobôs(listaRobôs):
+    ''' Função idsRobôs
+    Descrição: Cria uma lista com os ids dos robôs existentes
+    na lista de robôs (sem repetição)
+    Escopo: Função global paramétrica
+    Dados de entrada: lista de robôs
+    Dados de saída: lista com ids dos robôs, sem repetição de id
+    '''
+
+    listaIdsRepetidos = list(map(tupla1, listaRobôs))
+    return removeDuplicata(listaIdsRepetidos)
+
+
+def listaVítimasRobô(listaRobôs, id):
+    ''' Função listaVítimasRobô
+    Descrição: Retorna a lista de vítimas avistadas por um robô dado seu id
+    Escopo: Função global paramétrica
+    Dados de entrada: lista com informações sobre todos os robôs e o id de um robô da lista
+    Dados de saída: lista com vítimas avistadas por um robô
+    '''
+
+    ids = idsRobôs(listaRobôs)
+    return [tupla4(x) for x in listaRobôs if tupla1(x) == id]
+
+def totalVítimasRobô(listaRobôs, id):
+    ''' Função totalVítimasRobô
+    Descrição: Retorna o total de vítimas avistadas por um robô dado seu id
+    Escopo: Função global paramétrica
+    Dados de entrada: lista com informações sobre todos os robôs e o id de um robô da lista
+    Dados de saída: total de vítimas avistadas por um robô
+    '''
+
+    listaVítimas = listaVítimasRobô(listaRobôs, id)
+    return reduce(lambda x, y: x + y, listaVítimas)
+
+
 def idMaisVítimas(listaRobôs):
     ''' Função idMaisVítimas
     Descrição: Retorna os ids do robôs que avistaram o maior número de vítimas
@@ -256,22 +309,28 @@ def idMaisVítimas(listaRobôs):
     Dados de entrada: lista com informações sobre todos os robôs
     Dados de saída: lista com ids de robôs (pode haver mais de um) que avistaram o maior número de vítimas
     '''
-    def vítimasRobôs(listaRobôs): # Algo nesse sentido
-        return map(tupla4(listaRobôs))
 
-    def totalVítimasRobôs(listaRobôs):
-        listaVítimas = vítimasRobôs(listaRobôs)
-        return map(somaLista(listaVítimas))
+def totalVítimasRobôs(listaRobôs):
+    print("n sei")
+    # ids = idsRobôs(listaRobôs)
+    # return [totalVítimasRobôs(listaRobôs, x) for x in ids]
+    # nMaisVítimas = maiorLista(totalVítimasRobôsLista)
 
-    totalVítimasRobôsLista = totalVítimasRobôs(listaRobôs)
-    nMaisVítimas = maiorLista(totalVítimasRobôsLista)
 
-    def elementosLista(lista, n): # testando ainda
-        if lista[0] == n and len(lista) < 2:
-            return [lista[0]]
-        elif lista[0] == n:
-            return [lista[0]] + elementosLista(lista[1:], n)
+def tuplasRobôId(listaRobôs, id):
+    ''' Função tuplasRobôID
+    Descrição: Retorna as tuplas de um robô na lista dado seu id
+    Escopo: Função global paramétrica
+    Dados de entrada: lista com informações sobre todos os robôs
+    Dados de saída: lista de tuplas de um robô
+    '''
 
+    if listaRobôs == []:
+        return []
+    elif tupla1(listaRobôs[0]) == id:
+        return [listaRobôs[0]] + tuplasRobôId(listaRobôs[1:], id)
+    else:
+        return tuplasRobôId(listaRobôs[1:], id)
 
 # ============ TESTES ============ #
 # "Os testes propriamente ditos devem estar automatizados no arquivo de código"
@@ -291,4 +350,8 @@ def idMaisVítimas(listaRobôs):
 # pontos3 = [(1,1), (3,1)]
 # pontos4 = [(1,1), (3,1), (6,1)]
 # print(distânciaTotal(pontos1), distânciaTotal(pontos2), distânciaTotal(pontos3), distânciaTotal(pontos4))
-print(distânciaTotalRobô(listaRobôs, 'robo4'))
+
+# print(distânciaTotalRobô(listaRobôs, 'robo4'))
+print(tuplasRobôId(listaRobôs, 'robo3'))
+print(listaVítimasRobô(listaRobôs, 'robo3'))
+print(totalVítimasRobô(listaRobôs, 'robo3'))
