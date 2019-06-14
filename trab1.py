@@ -138,10 +138,6 @@ def distânciaTotalRobô(listaRobôs, id):
     return distânciaTotal(pontosPercorridosRobô)
 
 
-# def distRobô(listaRobôs): # Versão sem ID
-
-#     return
-
 # ============ QUESTÃO B ============ #
 # b) Determine qual dos robôs apresenta o seu último ponto de passagem no terreno de busca que
 #  possui a maior distância em relação à origem.
@@ -155,19 +151,98 @@ def distânciaTotalRobô(listaRobôs, id):
 
 # PLANEJAMENTO:
 # Criar as seguintes funções:
-# - Função para obter uma lista com o último ponto de todos os robôs da lista de entrada
-# - Função para calcular a distância da origem a todos esses pontos, retornando em uma lista
-# - Função para extrair maior número da lista obtida no último item
-# - Função para buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs.
+# - Função para obter uma lista com o último ponto de todos os robôs da lista de entrada - OK
+# - Função para calcular a distância da origem a todos esses pontos, retornando em uma lista - OK
+# - Função para extrair maior número da lista obtida no último item -OK
+# - Função para buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs - OK
 # - Função para determinar tempo de percurso de um robô, dado seu percurso
-# - Função para imprimir percurso de um robô
+# - Função para imprimir percurso de um robô - OK
 
-def últimosPontosRobôs(listaRobôs): # Separar em funções menores ZOADISSIMA
-    # percursos = list(map(tupla3, listaRobôs)) # Supostamente pega a lista de percursos de todos os robôs
-    # últimosPontos = list(map(lambda lista: , percursos)) # Pega o último ponto de cada robô
-    # distOrigemRobôs = list(map(lambda ponto: distEuclid(0, ponto), últimosPontos)) # Supostamente calcula distância da origem até o ponto, para cada ponto
-    # return percursos
+def removeDuplicata(lista):
+    ''' Função removeDuplicata
+    Descrição: Cria uma nova lista dada uma lista de entrada sem elementos duplicados desta
+    Escopo: Função global paramétrica
+    Dados de entrada: lista válida
+    Dados de saída: lista sem elementos duplicados
+    '''
+
+    if len(lista) < 2:
+        return lista
+    elif lista[0] not in lista[1:]:
+        return [lista[0]] + removeDuplicata(lista[1:])
+    else:
+        return removeDuplicata(lista[1:])
+
+
+def idsRobôs(listaRobôs):
+    ''' Função idsRobôs
+    Descrição: Cria uma lista com os ids dos robôs existentes
+    na lista de robôs (sem repetição)
+    Escopo: Função global paramétrica
+    Dados de entrada: lista de robôs
+    Dados de saída: lista com ids dos robôs, sem repetição de id
+    '''
+
+    listaIdsRepetidos = list(map(tupla1, listaRobôs))
+    return removeDuplicata(listaIdsRepetidos)
+
+
+def caminhosPercorridos(listaRobôs):
+    ids = idsRobôs(listaRobôs)
+    caminhos = (map(lambda x: pegaPontosRobô(listaRobôs, x), ids))
+    return list(caminhos)
+
+
+def distânciasTotaisRobôs(listaRobôs):
+    return list(map(distânciaTotal, caminhosPercorridos(listaRobôs)))
+
+
+def imprimePercurso(listaRobôs, id):
+    print(pegaPontosRobô(listaRobôs, id))
     return 1
+
+
+def últimosPontosRobôs(listaRobôs):
+    percursos = caminhosPercorridos(listaRobôs)
+    return list(map(tupla4, percursos))
+
+
+def distOrigemPonto(p):
+    return distEuclid((0,0), p)
+
+
+def distOrigemÚltimoPonto(percursos):
+    return list(map(lambda x: distOrigemPonto(x), percursos))
+
+def índicesMáximos(lista):
+    maximo = maxLista(lista)
+    return [x for x, i in enumerate(lista) if i == maximo]
+
+def índicesMaisDistantes(listaRobôs):
+    distsÚltimosPontos = distOrigemÚltimoPonto(últimosPontosRobôs(listaRobôs))
+    maiorDistância = maxLista(distsÚltimosPontos)
+
+    ids = idsRobôs(listaRobôs)
+    indices = índicesMáximos(distsÚltimosPontos)
+
+    return indices
+
+def robôsMaisDistantes(ids, indicesDistancia):
+    if len(indicesDistancia) == 1:
+        return [ids[indicesDistancia[0]]]
+    else:
+        return [ids[indicesDistancia[0]]] + robôsMaisDistantes(ids, indicesDistancia[1:])
+
+
+print("Índices dos robôs mais distantes:")
+
+print(índicesMaisDistantes(listaRobôs))
+
+ids = idsRobôs(listaRobôs)
+indices = índicesMaisDistantes(listaRobôs)
+
+print("Robôs mais distantes:")
+print(robôsMaisDistantes(ids, indices))
 
 # print(últimosPontosRobôs(listaRobôs))
 
@@ -255,35 +330,6 @@ def mergeSort(lista):
 # - Buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs.
 
 
-def removeDuplicata(lista):
-    ''' Função removeDuplicata
-    Descrição: Cria uma nova lista dada uma lista de entrada sem elementos duplicados desta
-    Escopo: Função global paramétrica
-    Dados de entrada: lista válida
-    Dados de saída: lista sem elementos duplicados
-    '''
-
-    if len(lista) < 2:
-        return lista
-    elif lista[0] not in lista[1:]:
-        return [lista[0]] + removeDuplicata(lista[1:])
-    else:
-        return removeDuplicata(lista[1:])
-
-
-def idsRobôs(listaRobôs):
-    ''' Função idsRobôs
-    Descrição: Cria uma lista com os ids dos robôs existentes
-    na lista de robôs (sem repetição)
-    Escopo: Função global paramétrica
-    Dados de entrada: lista de robôs
-    Dados de saída: lista com ids dos robôs, sem repetição de id
-    '''
-
-    listaIdsRepetidos = list(map(tupla1, listaRobôs))
-    return removeDuplicata(listaIdsRepetidos)
-
-
 def listaVítimasRobô(listaRobôs, id):
     ''' Função listaVítimasRobô
     Descrição: Retorna a lista de vítimas avistadas por um robô dado seu id
@@ -357,18 +403,29 @@ def tuplasRobôId(listaRobôs, id):
 # print(distânciaTotal(pontos1), distânciaTotal(pontos2), distânciaTotal(pontos3), distânciaTotal(pontos4))
 
 # print(distânciaTotalRobô(listaRobôs, 'robo4'))
-print(tuplasRobôId(listaRobôs, 'robo3'))
-print(listaVítimasRobô(listaRobôs, 'robo3'))
-print(totalVítimasRobô(listaRobôs, 'robo3'))
 
-def caminhosPercorridos(listaRobôs):
-    ids = idsRobôs(listaRobôs)
+# print("\nImprimindo tuplas do robo3:")
+# print(tuplasRobôId(listaRobôs, "robo3"))
 
-    caminhos = (map(lambda x: pegaPontosRobô(listaRobôs, x), ids))
-    return list(caminhos)
+# print("\nImprimindo lista de vítimas avistadas pelo robo3:")
+# print(listaVítimasRobô(listaRobôs, "robo3"))
+# print("\nImprimindo total de vítimas avistadas pelo robo3:")
+# print(totalVítimasRobô(listaRobôs, "robo3"))
 
-def distânciasTotaisRobôs(listaRobôs):
-    return list(map(distânciaTotal, caminhosPercorridos(listaRobôs)))
+# print("\nImprimindo percurso do robo3:")
+# imprimePercurso(listaRobôs, 'robo3')
 
+print("\nImprimindo caminhos percorridos pelos robos:")
 print(caminhosPercorridos(listaRobôs))
+
+print("Últimos pontos dos robôs:")
+print(últimosPontosRobôs(listaRobôs))
+
+print("\nImprimindo distâncias totais percorridas pelos robos:")
 print(distânciasTotaisRobôs(listaRobôs))
+
+print("Distância da origem até os últimos pontos dos robôs:")
+print(distOrigemÚltimoPonto(últimosPontosRobôs(listaRobôs)))
+
+print()
+print(minLista(distOrigemÚltimoPonto(últimosPontosRobôs(listaRobôs))))
