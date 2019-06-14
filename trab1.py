@@ -191,10 +191,15 @@ def exibeCaminhosRobôsCrescente(listaRobôs):
     Dados de entrada: A lista de dados sobre os robôs
     Dados de saída: Uma lista de distâncias ordenada
     '''
-    listaDistâncias = map(distRobô(listaRobôs))
+    ids = idsRobôs(listaRobôs)
+
     listaDistânciasOrdenadas = mergeSort(listaDistâncias)
     print(listaDistânciasOrdenadas)
     return listaDistânciasOrdenadas
+
+# def distânciasTotaisRobôs(listaRobôs, listaIds):
+
+
 
 
 def mergeOrdenada(l1, l2):
@@ -355,3 +360,15 @@ def tuplasRobôId(listaRobôs, id):
 print(tuplasRobôId(listaRobôs, 'robo3'))
 print(listaVítimasRobô(listaRobôs, 'robo3'))
 print(totalVítimasRobô(listaRobôs, 'robo3'))
+
+def caminhosPercorridos(listaRobôs):
+    ids = idsRobôs(listaRobôs)
+
+    caminhos = (map(lambda x: pegaPontosRobô(listaRobôs, x), ids))
+    return list(caminhos)
+
+def distânciasTotaisRobôs(listaRobôs):
+    return list(map(distânciaTotal, caminhosPercorridos(listaRobôs)))
+
+print(caminhosPercorridos(listaRobôs))
+print(distânciasTotaisRobôs(listaRobôs))
