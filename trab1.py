@@ -12,7 +12,7 @@
 
 # Considerando uma lista com tais informações como os dados de entrada disponíveis, faça um programa em Python que responda às seguintes solicitações:
 # Entrada no modelo:
-# listaRobôs = [(id1, instante1, ponto1, nVítimas1), (id2, instante2, ponto2, nVítimas2)]
+# listaRobos = [(id1, instante1, ponto1, nVítimas1), (id2, instante2, ponto2, nVítimas2)]
 
 # Compreensão do problema e planejamento da solução
 
@@ -39,7 +39,7 @@ def template(entradas):
 
     # Resto da função. A validação ocorre aqui, com try, Exception() e etc
 
-listaRobôs = [('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2), ('robo3', 3, (5, 4), 3), ('robo3', 4, (8, 1), 4), ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4), ('robo5', 7, (6, 4), 5), ('robo3', 8, (7, 2), 3), ('robo5', 9, (6, 4), 4)]
+listaRobos = [('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2), ('robo3', 3, (5, 4), 3), ('robo3', 4, (8, 1), 4), ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4), ('robo5', 7, (6, 4), 5), ('robo3', 8, (7, 2), 3), ('robo5', 9, (6, 4), 4)]
 
 # ============ QUESTÃO A ============ # - OK
 # a) Calcular a distância percorrida por um determinado robô ao longo do processo de resgate das vítimas.
@@ -64,8 +64,8 @@ def distEuclid(p1, p2):
 
     return sqrt((tupla1(p1) - tupla1(p2))**2 + (tupla2(p1) - tupla2(p2))**2)
 
-def listaTuplaRobôID(listaRobôs, id):
-    ''' Função: listaTuplaRobôID()
+def listaTuplaRoboID(listaRobos, id):
+    ''' Função: listaTuplaRoboID()
     Descrição: Extrai todas as tuplas de um mesmo robô da lista de robôs de entrada
     Escopo: função global paramétrica
     Dados de entrada: lista de robôs de entrada e id de um robô
@@ -79,36 +79,36 @@ def listaTuplaRobôID(listaRobôs, id):
     #     else:
     #         return False
 
-    return list(filter(lambda x: (tupla1(x) == id), listaRobôs))
-    # return [x for x in listaRobôs if tupla1(x) == id]
+    return list(filter(lambda x: (tupla1(x) == id), listaRobos))
+    # return [x for x in listaRobos if tupla1(x) == id]
 
 
 # - Função para calcular a distância entre os pontos percorridos pelo robô
-def pegaPontosRobô(listaRobôs, id):
-    ''' Função: pegaPontosRobô()
+def pegaPontosRobo(listaRobos, id):
+    ''' Função: pegaPontosRobo()
     Descrição: Extrai todos os pontos percorridos por um mesmo robô da lista de robôs de entrada
     Escopo: função global paramétrica
     Dados de entrada: lista de robôs de entrada e id de um robô
     Dados de saída: lista de todos os pontos percorridos por um único robô da lista de robôs
     '''
 
-    tuplasRobô = listaTuplaRobôID(listaRobôs, id)
-    return list(map(tupla3, tuplasRobô))
+    tuplasRobo = listaTuplaRoboID(listaRobos, id)
+    return list(map(tupla3, tuplasRobo))
 
 
-def pegaPontosTuplaRobô(tuplasRobô):
-    ''' Função: pegaPontosTuplaRobô()
+def pegaPontosTuplaRobo(tuplasRobo):
+    ''' Função: pegaPontosTuplaRobo()
     Descrição: Cria todos os pontos percorridos por um robô de uma lista de tuplas de informações um mesmo robô
     Escopo: função global paramétrica
     Dados de entrada: lista de tuplas de um robô
     Dados de saída: lista de todos os pontos percorridos pelo robô
     '''
 
-    return list(map(tupla3, tuplasRobô))
+    return list(map(tupla3, tuplasRobo))
 
 
-def distânciaTotal(pontos):
-    ''' Função: distânciaTotal()
+def distanciaTotal(pontos):
+    ''' Função: distanciaTotal()
     Descrição: Calcula a distância total entre uma lista de pontos somando
     a distância entre um ponto e o próximo até o fim da lista
     Escopo: função global paramétrica
@@ -121,21 +121,21 @@ def distânciaTotal(pontos):
     elif len(pontos) == 2:
         return distEuclid(pontos[0], pontos[1])
     else:
-        return distEuclid(pontos[0], pontos[1]) + distânciaTotal(pontos[1:])
+        return distEuclid(pontos[0], pontos[1]) + distanciaTotal(pontos[1:])
 
-    return distânciaTotal(distânciasRobô)
+    return distanciaTotal(distanciasRobô)
 
 
-def distânciaTotalRobô(listaRobôs, id):
-    ''' Função: distânciaTotalRobô() zoada
+def distanciaTotalRobo(listaRobos, id):
+    ''' Função: distanciaTotalRobo() zoada
     Descrição: Calcula a distância percorrida por um robô da lista de robôs dado seu id
     Escopo: função global paramétrica
     Dados de entrada: lista de tuplas de um robô
     Dados de saída: lista de todos os pontos percorridos pelo robô
     '''
-    tuplasRobô = listaTuplaRobôID(listaRobôs, id)
-    pontosPercorridosRobô = pegaPontosTuplaRobô(tuplasRobô)
-    return distânciaTotal(pontosPercorridosRobô)
+    tuplasRobo = listaTuplaRoboID(listaRobos, id)
+    pontosPercorridosRobo = pegaPontosTuplaRobo(tuplasRobo)
+    return distanciaTotal(pontosPercorridosRobo)
 
 
 # ============ QUESTÃO B ============ #
@@ -174,8 +174,8 @@ def removeDuplicata(lista):
         return removeDuplicata(lista[1:])
 
 
-def idsRobôs(listaRobôs):
-    ''' Função idsRobôs
+def idsRobos(listaRobos):
+    ''' Função idsRobos
     Descrição: Cria uma lista com os ids dos robôs existentes
     na lista de robôs (sem repetição)
     Escopo: Função global paramétrica
@@ -183,27 +183,27 @@ def idsRobôs(listaRobôs):
     Dados de saída: lista com ids dos robôs, sem repetição de id
     '''
 
-    listaIdsRepetidos = list(map(tupla1, listaRobôs))
+    listaIdsRepetidos = list(map(tupla1, listaRobos))
     return removeDuplicata(listaIdsRepetidos)
 
 
-def caminhosPercorridos(listaRobôs):
-    ids = idsRobôs(listaRobôs)
-    caminhos = (map(lambda x: pegaPontosRobô(listaRobôs, x), ids))
+def caminhosPercorridos(listaRobos):
+    ids = idsRobos(listaRobos)
+    caminhos = (map(lambda x: pegaPontosRobo(listaRobos, x), ids))
     return list(caminhos)
 
 
-def distânciasTotaisRobôs(listaRobôs):
-    return list(map(distânciaTotal, caminhosPercorridos(listaRobôs)))
+def distanciasTotaisRobos(listaRobos):
+    return list(map(distanciaTotal, caminhosPercorridos(listaRobos)))
 
 
-def imprimePercurso(listaRobôs, id):
-    print(pegaPontosRobô(listaRobôs, id))
+def imprimePercurso(listaRobos, id):
+    print(pegaPontosRobo(listaRobos, id))
     return 1
 
 
-def últimosPontosRobôs(listaRobôs):
-    percursos = caminhosPercorridos(listaRobôs)
+def ultimosPontosRobos(listaRobos):
+    percursos = caminhosPercorridos(listaRobos)
     return list(map(tupla4, percursos))
 
 
@@ -211,40 +211,33 @@ def distOrigemPonto(p):
     return distEuclid((0,0), p)
 
 
-def distOrigemÚltimoPonto(percursos):
+def distOrigemUltimoPonto(percursos):
     return list(map(lambda x: distOrigemPonto(x), percursos))
 
-def índicesMáximos(lista):
+
+def indicesMaximos(lista):
     maximo = maxLista(lista)
     return [x for x, i in enumerate(lista) if i == maximo]
 
-def índicesMaisDistantes(listaRobôs):
-    distsÚltimosPontos = distOrigemÚltimoPonto(últimosPontosRobôs(listaRobôs))
+
+def indicesMaisDistantes(listaRobos):
+    distsÚltimosPontos = distOrigemUltimoPonto(ultimosPontosRobos(listaRobos))
     maiorDistância = maxLista(distsÚltimosPontos)
 
-    ids = idsRobôs(listaRobôs)
-    indices = índicesMáximos(distsÚltimosPontos)
+    ids = idsRobos(listaRobos)
+    indices = indicesMaximos(distsÚltimosPontos)
 
     return indices
 
-def robôsMaisDistantes(ids, indicesDistancia):
+
+def robosMaisDistantes(ids, indicesDistancia):
     if len(indicesDistancia) == 1:
         return [ids[indicesDistancia[0]]]
     else:
-        return [ids[indicesDistancia[0]]] + robôsMaisDistantes(ids, indicesDistancia[1:])
+        return [ids[indicesDistancia[0]]] + robosMaisDistantes(ids, indicesDistancia[1:])
 
 
-print("Índices dos robôs mais distantes:")
-
-print(índicesMaisDistantes(listaRobôs))
-
-ids = idsRobôs(listaRobôs)
-indices = índicesMaisDistantes(listaRobôs)
-
-print("Robôs mais distantes:")
-print(robôsMaisDistantes(ids, indices))
-
-# print(últimosPontosRobôs(listaRobôs))
+# print(ultimosPontosRobos(listaRobos))
 
 # ============ QUESTÃO C ============ #
 # c) Exiba os caminhos percorridos por todos os robôs que entraram no terreno de busca,
@@ -259,20 +252,20 @@ print(robôsMaisDistantes(ids, indices))
 # - Função para aplicar a função da questão (a) em todos os robôs da lista de entrada - OK?
 # - Ordenar essa lista de distâncias e retornar (a menos que queira a lista de tuplas original, ver isso depois) - OK?
 
-def exibeCaminhosRobôsCrescente(listaRobôs):
+def exibeCaminhosRobôsCrescente(listaRobos):
     ''' Função exibeCaminhosRobôsCrescente()
     Descrição: Dada a lista de robôs, imprime o caminho de cada robô (em ordem crescente de distância)
     Escopo: Função global paramétrica
     Dados de entrada: A lista de dados sobre os robôs
     Dados de saída: Uma lista de distâncias ordenada
     '''
-    ids = idsRobôs(listaRobôs)
+    ids = idsRobos(listaRobos)
 
     listaDistânciasOrdenadas = mergeSort(listaDistâncias)
     print(listaDistânciasOrdenadas)
     return listaDistânciasOrdenadas
 
-# def distânciasTotaisRobôs(listaRobôs, listaIds):
+# def distanciasTotaisRobos(listaRobos, listaIds):
 
 
 
@@ -282,7 +275,7 @@ def mergeOrdenada(l1, l2):
     Descrição: Com duas listas ordenadas de entrada, junta as duas de forma ordenada
     Escopo: Função global paramétrica
     Dados de entrada: Duas listas numéricas ordenadas
-    Dados de saída: Uma lista ordenada tuplasRobôIdda a partir da junção ordenada das duas de entrada
+    Dados de saída: Uma lista ordenada tuplasRoboIdda a partir da junção ordenada das duas de entrada
     Pega o primeiro elemento que seja o menor dentre as duas listas
     e junta com o resultado da função chamando com resto da lista "menor"
     Ex: l1 = [1, 2] e l2 = [3, 4]:
@@ -330,18 +323,18 @@ def mergeSort(lista):
 # - Buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs.
 
 
-def listaVítimasRobô(listaRobôs, id):
-    ''' Função listaVítimasRobô
+def listaVitimasRobo(listaRobos, id):
+    ''' Função listaVitimasRobo
     Descrição: Retorna a lista de vítimas avistadas por um robô dado seu id
     Escopo: Função global paramétrica
     Dados de entrada: lista com informações sobre todos os robôs e o id de um robô da lista
     Dados de saída: lista com vítimas avistadas por um robô
     '''
 
-    ids = idsRobôs(listaRobôs)
-    return [tupla4(x) for x in listaRobôs if tupla1(x) == id]
+    ids = idsRobos(listaRobos)
+    return [tupla4(x) for x in listaRobos if tupla1(x) == id]
 
-def totalVítimasRobô(listaRobôs, id):
+def totalVítimasRobô(listaRobos, id):
     ''' Função totalVítimasRobô
     Descrição: Retorna o total de vítimas avistadas por um robô dado seu id
     Escopo: Função global paramétrica
@@ -349,39 +342,39 @@ def totalVítimasRobô(listaRobôs, id):
     Dados de saída: total de vítimas avistadas por um robô
     '''
 
-    listaVítimas = listaVítimasRobô(listaRobôs, id)
-    return reduce(lambda x, y: x + y, listaVítimas)
+    listaVitimas = listaVitimasRobo(listaRobos, id)
+    return reduce(lambda x, y: x + y, listaVitimas)
 
 
-def idMaisVítimas(listaRobôs):
-    ''' Função idMaisVítimas
+def idMaisVitimas(listaRobos):
+    ''' Função idMaisVitimas
     Descrição: Retorna os ids do robôs que avistaram o maior número de vítimas
     Escopo: Função global paramétrica
     Dados de entrada: lista com informações sobre todos os robôs
     Dados de saída: lista com ids de robôs (pode haver mais de um) que avistaram o maior número de vítimas
     '''
 
-def totalVítimasRobôs(listaRobôs):
+def totalVitimasRobos(listaRobos):
     print("n sei")
-    # ids = idsRobôs(listaRobôs)
-    # return [totalVítimasRobôs(listaRobôs, x) for x in ids]
-    # nMaisVítimas = maiorLista(totalVítimasRobôsLista)
+    # ids = idsRobos(listaRobos)
+    # return [totalVitimasRobos(listaRobos, x) for x in ids]
+    # nMaisVítimas = maiorLista(totalVitimasRobosLista)
 
 
-def tuplasRobôId(listaRobôs, id):
-    ''' Função tuplasRobôID
+def tuplasRoboId(listaRobos, id):
+    ''' Função tuplasRoboID
     Descrição: Retorna as tuplas de um robô na lista dado seu id
     Escopo: Função global paramétrica
     Dados de entrada: lista com informações sobre todos os robôs
     Dados de saída: lista de tuplas de um robô
     '''
 
-    if listaRobôs == []:
+    if listaRobos == []:
         return []
-    elif tupla1(listaRobôs[0]) == id:
-        return [listaRobôs[0]] + tuplasRobôId(listaRobôs[1:], id)
+    elif tupla1(listaRobos[0]) == id:
+        return [listaRobos[0]] + tuplasRoboId(listaRobos[1:], id)
     else:
-        return tuplasRobôId(listaRobôs[1:], id)
+        return tuplasRoboId(listaRobos[1:], id)
 
 # ============ TESTES ============ #
 # "Os testes propriamente ditos devem estar automatizados no arquivo de código"
@@ -393,39 +386,27 @@ def tuplasRobôId(listaRobôs, id):
 # print(listaTeste)
 # print(mergeSort(listaTeste))
 
-# print(listaTuplaRobôID(listaRobôs, 'robo3'))
+# print(listaTuplaRoboID(listaRobos, 'robo3'))
 
 # Testes A
 # pontos1 = []
 # pontos2 = [(1,1)]
 # pontos3 = [(1,1), (3,1)]
 # pontos4 = [(1,1), (3,1), (6,1)]
-# print(distânciaTotal(pontos1), distânciaTotal(pontos2), distânciaTotal(pontos3), distânciaTotal(pontos4))
+# print(distanciaTotal(pontos1), distanciaTotal(pontos2), distanciaTotal(pontos3), distanciaTotal(pontos4))
 
-# print(distânciaTotalRobô(listaRobôs, 'robo4'))
+# print(distanciaTotalRobo(listaRobos, 'robo4'))
 
 # print("\nImprimindo tuplas do robo3:")
-# print(tuplasRobôId(listaRobôs, "robo3"))
+# print(tuplasRoboId(listaRobos, "robo3"))
 
 # print("\nImprimindo lista de vítimas avistadas pelo robo3:")
-# print(listaVítimasRobô(listaRobôs, "robo3"))
+# print(listaVitimasRobo(listaRobos, "robo3"))
 # print("\nImprimindo total de vítimas avistadas pelo robo3:")
-# print(totalVítimasRobô(listaRobôs, "robo3"))
+# print(totalVítimasRobô(listaRobos, "robo3"))
 
 # print("\nImprimindo percurso do robo3:")
-# imprimePercurso(listaRobôs, 'robo3')
+# imprimePercurso(listaRobos, 'robo3')
 
-print("\nImprimindo caminhos percorridos pelos robos:")
-print(caminhosPercorridos(listaRobôs))
 
-print("Últimos pontos dos robôs:")
-print(últimosPontosRobôs(listaRobôs))
-
-print("\nImprimindo distâncias totais percorridas pelos robos:")
-print(distânciasTotaisRobôs(listaRobôs))
-
-print("Distância da origem até os últimos pontos dos robôs:")
-print(distOrigemÚltimoPonto(últimosPontosRobôs(listaRobôs)))
-
-print()
-print(minLista(distOrigemÚltimoPonto(últimosPontosRobôs(listaRobôs))))
+exec(open('./testes.py').read())
