@@ -2,6 +2,16 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, 2019/1, ministrada por Jordana Sarmenghi Salamon em 2019/
 
+from functools import reduce
+
+
+def maxLista(lista):
+    return reduce(lambda a, b: a if (a > b) else b, lista)
+
+
+def minLista(lista):
+    return reduce(lambda a, b: a if (a < b) else b, lista)
+
 
 def tupla1(tupla4):
     ''' Função: tupla1()
