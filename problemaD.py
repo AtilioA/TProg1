@@ -38,12 +38,18 @@ def ids_mais_vitimas(listaRobos):
     Dados de saída: Lista com ids de robôs (pode haver mais de um) que avistaram o maior número de vítimas
     """
 
-    ids = ids_robos(listaRobos)
-    indices = indices_mais_vitimas(listaRobos)
+    try:
+        if len(listaRobos) == 0:
+            raise Exception()
+        else:
+            ids = ids_robos(listaRobos)
+            indices = indices_mais_vitimas(listaRobos)
 
-    idsVitimas = robos_mais_vitimas(ids, indices)
+            idsVitimas = robos_mais_vitimas(ids, indices)
 
-    return idsVitimas
+            return idsVitimas
+    except:
+        pass
 
 
 def lista_vitimas_robo(listaRobos, id):

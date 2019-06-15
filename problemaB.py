@@ -49,29 +49,36 @@ def imprime_robos_mais_distantes(listaRobos):
     Dados de saída: None
     """
 
-    ids = ids_robos(listaRobos)
-    indices = indices_ids_mais_Distantes(listaRobos)
+    try:
+        if len(listaRobos) == 0:
+            print("Lista vazia não possui robôs")
+            raise Exception
+        else:
+            ids = ids_robos(listaRobos)
+            indices = indices_ids_mais_distantes(listaRobos)
 
-    idsMaisDistantes = robos_mais_distantes(ids, indices)
-    if len(idsMaisDistantes) == 1:
-        print("Robô mais distante:")
-    else:
-        print("Robôs mais distantes:")
-    print(idsMaisDistantes)
+            idsMaisDistantes = robos_mais_distantes(ids, indices)
+            if len(idsMaisDistantes) == 1:
+                print("Robô mais distante:")
+            else:
+                print("Robôs mais distantes:")
+            print(idsMaisDistantes)
 
-    if len(idsMaisDistantes) == 1:
-        print("Percurso do robô:")
-    else:
-        print("Percursos dos robôs, respectivamente:")
-    print(list(map(lambda id: pega_pontos_robo(listaRobos, id), idsMaisDistantes)))
+            if len(idsMaisDistantes) == 1:
+                print("Percurso do robô:")
+            else:
+                print("Percursos dos robôs, respectivamente:")
+            print(list(map(lambda id: pega_pontos_robo(listaRobos, id), idsMaisDistantes)))
 
-    if len(idsMaisDistantes) == 1:
-        print("Tempo total do percurso:")
-    else:
-        print("Tempo total dos percursos, respectivamente:")
-    print(list(map(lambda id: tempo_percurso(listaRobos, id), idsMaisDistantes)))
+            if len(idsMaisDistantes) == 1:
+                print("Tempo total do percurso:")
+            else:
+                print("Tempo total dos percursos, respectivamente:")
+            print(list(map(lambda id: tempo_percurso(listaRobos, id), idsMaisDistantes)))
 
-    return None
+            return None
+    except:
+        pass
 
 
 def remove_duplicata(lista):
@@ -166,7 +173,7 @@ def indices_maximos(lista):
     return [x for x, i in enumerate(lista) if i == maximo]
 
 
-def indices_ids_mais_Distantes(listaRobos):
+def indices_ids_mais_distantes(listaRobos):
     """ Retorna os índices dos ids dos robôs mais distantes
     Escopo: Função global paramétrica
     Dados de entrada: Lista de robôs
@@ -185,11 +192,15 @@ def robos_mais_distantes(ids, indicesDistancia):
     Dados de entrada: Lista de ids, lista de índices de robôs mais distantes
     Dados de saída: Lista de ids de robôs mais distantes
     """
-
-    if len(indicesDistancia) == 1:
-        return [ids[indicesDistancia[0]]]
-    else:
-        return [ids[indicesDistancia[0]]] + robos_mais_distantes(ids, indicesDistancia[1:])
+    try:
+        if len(indicesDistancia) == 0:
+            raise Exception()
+        elif len(indicesDistancia) == 1:
+            return [ids[indicesDistancia[0]]]
+        else:
+            return [ids[indicesDistancia[0]]] + robos_mais_distantes(ids, indicesDistancia[1:])
+    except:
+        pass
 
 from problemaA import *
 from problemaC import *

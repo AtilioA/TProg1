@@ -26,10 +26,17 @@ def caminhos_robos_crescente(listaRobos):
     Dados de saída: Uma lista de distâncias ordenada
     """
 
-    listaDistancias = distancias_totais_robos(listaRobos)
+    try:
+        if len(listaRobos) == 0:
+            print("Lista vazia não possui robôs")
+            raise Exception()
+        else:
+            listaDistancias = distancias_totais_robos(listaRobos)
 
-    listaDistanciasOrdenadas = merge_sort(listaDistancias)
-    return listaDistanciasOrdenadas
+            listaDistanciasOrdenadas = merge_sort(listaDistancias)
+            return listaDistanciasOrdenadas
+    except:
+        pass
 
 
 def merge_ordenada(l1, l2):
