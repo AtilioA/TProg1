@@ -10,28 +10,32 @@
 # o ponto no plano cartesiano referente ao incidente registrado, e
 # o número de vítimas presentes na área de visibilidade do robô.
 
-# Considerando uma lista com tais informações como os dados de entrada disponíveis, faça um programa em Python que responda às seguintes solicitações:
-# Entrada no modelo:
-# listaRobos = [(id1, instante1, ponto1, nVítimas1), (id2, instante2, ponto2, nVítimas2)]
+# Exemplo oficial de entrada
+listaRobos = [('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2), ('robo3', 3, (5, 4), 3), ('robo3', 4, (8, 1), 4), ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4), ('robo5', 7, (6, 4), 5), ('robo3', 8, (7, 2), 3), ('robo5', 9, (6, 4), 4)]
 
-# Compreensão do problema e planejamento da solução
+# Entradas criadas por mim
+listaRobos2 = [('robo28', 1, (1, 1), 3), ('robo1', 2, (9, 11), 14), ('robo2', 3, (1, 0), 1), ('robo28', 4, (2, 3), 4), ('robo1', 5, (4, 5), 5), ('robo28', 6, (3, 2), 2), ('robo32', 7, (4, 5), 2), ('robo11', 8, (11, 11), 11)]
 
+listaRobos3 = [('robo666', 1, (1, 1), 3), ('robo0', 2, (-3, -6), 14), ('robo2', 3, (-6, 0), 100), ('robo33', 4, (5, 5), 4), ('robo33', 5, (5, 5), 4), ('robo17', 6, (3, 2), 2), ('robo38', 7, (4, 5), 2), ('robo2077', 8, (16, 4), 2020)]
+
+
+# Importação de módulos
 # "(Ao importar funções de algum módulo, utilize a opção de importação específica)"
 from problemaA import *
 from problemaB import *
 from problemaC import *
 from problemaD import *
-import random
+
 from roboAux import *
 from math import *
 from functools import reduce
-import sys # Para testes (mergeSort por exemplo) apenas, não irá para a versão final
-sys.setrecursionlimit(10000) # Para aumentar limite de recursão do Python
 
 
+# Compreensão do problema e planejamento da solução
 # "Cada função deve ter um comentário com sua descrição, dados de entrada e saída.
 # Na descrição, diga se a função é global ou local, paramétrica ou não, e por quê.
 # Realizar a validação dos dados."
+
 # Vamos comentar as funções assim:
 def template(entradas):
     ''' Função: nomeDaFunção()
@@ -43,40 +47,10 @@ def template(entradas):
 
     # Resto da função. A validação ocorre aqui, com try, Exception() e etc
 
-listaRobos = [('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2), ('robo3', 3, (5, 4), 3), ('robo3', 4, (8, 1), 4), ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4), ('robo5', 7, (6, 4), 5), ('robo3', 8, (7, 2), 3), ('robo5', 9, (6, 4), 4)]
-
-
 # ============ TESTES ============ #
 # "Os testes propriamente ditos devem estar automatizados no arquivo de código"
 # Aqui ficarão os testes do programa, inclusive os testes que estarão na versão final
-# dist01 = distEuclid((0,0),(1,1))
-# print(f"Distância entre (0,0 e (1,1): {dist01}")
-
-# listaTeste = [random.randrange(1, 100) for _ in range(0, 100)]
-# print(listaTeste)
-# print(mergeSort(listaTeste))
-
-# print(listaTuplaRoboID(listaRobos, 'robo3'))
-
-# Testes A
-# pontos1 = []
-# pontos2 = [(1,1)]
-# pontos3 = [(1,1), (3,1)]
-# pontos4 = [(1,1), (3,1), (6,1)]
-# print(distanciaTotal(pontos1), distanciaTotal(pontos2), distanciaTotal(pontos3), distanciaTotal(pontos4))
-
-# print(distanciaTotalRobo(listaRobos, 'robo4'))
-
-# print("\nImprimindo tuplas do robo3:")
-# print(tuplasRoboId(listaRobos, "robo3"))
-
-# print("\nImprimindo lista de vítimas avistadas pelo robo3:")
-# print(listaVitimasRobo(listaRobos, "robo3"))
-# print("\nImprimindo total de vítimas avistadas pelo robo3:")
-# print(totalVítimasRobô(listaRobos, "robo3"))
-
-# print("\nImprimindo percurso do robo3:")
-# imprimePercurso(listaRobos, 'robo3')
 
 
-exec(open('./testes.py').read())
+import subprocess
+subprocess.call(["python", "testes.py"])
