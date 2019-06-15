@@ -2,9 +2,12 @@ from roboAux import *
 from functools import reduce
 
 # ============ QUESTÃO D ============ #
-# d) Forneça a identidade do(s) robô(s) que conseguiu(ram) informar o maior número de vítimas (considerando que não há duplicação de identificação de vítima por um mesmo robô).
+# d) Forneça a identidade do(s) robô(s) que conseguiu(ram) informar o maior número de vítimas
+# (considerando que não há duplicação de identificação de vítima por um mesmo robô).
 
-# COMPREENSÃO DO PROBLEMA: deve-se calcular o número de vítimas que cada robô avistou e identificar o robô que avistou o maior número. Retornar mais de um robô caso o maior número seja repetido.
+# COMPREENSÃO DO PROBLEMA: deve-se calcular o número de vítimas que cada robô avistou
+# e identificar o robô que avistou o maior número.
+# Retornar mais de um robô caso o maior número seja repetido.
 
 # PLANEJAMENTO:
 # Criar as seguintes funções:
@@ -14,114 +17,94 @@ from functools import reduce
 # - Extrair maior número da lista obtida no último item - OK
 # - Buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs - OK
 
-def robosMaisVitimas(ids, indicesVitimas):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
+
+def robos_mais_vitimas(ids, indicesVitimas):
+    """ Retorna ids dos robôs que avistaram mais vítimas
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de ids dos robôs e índices de robôs que avistaram mais vítimas
+    Dados de saída: Lista de robôs que avistaram mais vítimas
+    """
+
     if len(indicesVitimas) == 1:
         return [ids[indicesVitimas[0]]]
     else:
-        return [ids[indicesVitimas[0]]] + robosMaisVitimas(ids, indicesVitimas[1:])
+        return [ids[indicesVitimas[0]]] + robos_mais_vitimas(ids, indicesVitimas[1:])
 
 
-def idsMaisVitimas(listaRobos):
-    ''' Função idsMaisVitimas()
-    Descrição: Retorna os ids do robôs que avistaram o maior número de vítimas
+def ids_mais_vitimas(listaRobos):
+    """ Retorna os ids do robôs que avistaram o maior número de vítimas
     Escopo: Função global paramétrica
-    Dados de entrada: lista com informações sobre todos os robôs
-    Dados de saída: lista com ids de robôs (pode haver mais de um) que avistaram o maior número de vítimas
-    '''
+    Dados de entrada: Lista com informações sobre todos os robôs
+    Dados de saída: Lista com ids de robôs (pode haver mais de um) que avistaram o maior número de vítimas
+    """
 
-    ids = idsRobos(listaRobos)
-    indices = indicesMaisVitimas(listaRobos)
+    ids = ids_robos(listaRobos)
+    indices = indices_mais_vitimas(listaRobos)
 
-    idsVitimas = robosMaisVitimas(ids, indices)
+    idsVitimas = robos_mais_vitimas(ids, indices)
 
     return idsVitimas
 
 
-def somaLista(lista):
-    ''' Função: somaLista()
-    Descrição: Soma os elementos de uma lista numérica
+def lista_vitimas_robo(listaRobos, id):
+    """ Retorna a lista de vítimas avistadas por um robô dado o id deste
     Escopo: Função global paramétrica
-    Dados de entrada: Lista numérica
-    Dados de saída: Valor numérico
-    '''
-    try:
-        if len(lista) == 0:
-            print("Lista vazia não possui valor de soma")
-            raise Exception()
-        else:
-            return reduce(lambda x, y: x + y, lista)
-    except:
-        pass
+    Dados de entrada: Lista com informações sobre todos os robôs e o id de um robô da lista
+    Dados de saída: Lista com número de vítimas avistadas por um robô em cada ocorrência
+    """
+
+    return [pega_vitimas(x) for x in listaRobos if tupla1(x) == id]
 
 
-def listaVitimasRobo(listaRobos, id):
-    ''' Função listaVitimasRobo
-    Descrição: Retorna a lista de vítimas avistadas por um robô dado seu id
+def total_vitimas_robo(listaRobos, id):
+    """ Retorna o total de vítimas avistadas por um robô dado seu id
     Escopo: Função global paramétrica
-    Dados de entrada: lista com informações sobre todos os robôs e o id de um robô da lista
-    Dados de saída: lista com vítimas avistadas por um robô
-    '''
-
-    return [pegaVitimas(x) for x in listaRobos if tupla1(x) == id]
-
-
-def totalVitimasRobo(listaRobos, id):
-    ''' Função totalVitimasRobo
-    Descrição: Retorna o total de vítimas avistadas por um robô dado seu id
-    Escopo: Função global paramétrica
-    Dados de entrada: lista com informações sobre todos os robôs e o id de um robô da lista
+    Dados de entrada: Lista com informações sobre todos os robôs e o id de um robô da lista
     Dados de saída: total de vítimas avistadas por um robô
-    '''
+    """
 
-    listaVitimas = listaVitimasRobo(listaRobos, id)
-    return somaLista(listaVitimas)
+    listaVitimas = lista_vitimas_robo(listaRobos, id)
+    return soma_lista(listaVitimas)
 
 
-def indicesMaisVitimas(listaRobos):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    listaVitimasRobos = totalVitimasRobos(listaRobos)
-    indices = indicesMaximos(listaVitimasRobos)
+def indices_mais_vitimas(listaRobos):
+    """ Retorna os índices dos ids dos robôs que avistaram mais vítimas
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista de índices
+    """
+
+    lista_vitimas_robos = total_vitimas_robos(listaRobos)
+    indices = indices_maximos(lista_vitimas_robos)
 
     return indices
 
 
-def totalVitimasRobos(listaRobos):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    ids = idsRobos(listaRobos)
-
-    return list(map(lambda id: totalVitimasRobo(listaRobos, id), ids))
-
-
-def tuplasRoboId(listaRobos, id):
-    ''' Função tuplasRoboID
-    Descrição: Retorna as tuplas de um robô na lista dado seu id
+def total_vitimas_robos(listaRobos):
+    """ Retorna o número total de vítimas que cada robô avistou
     Escopo: Função global paramétrica
-    Dados de entrada: lista com informações sobre todos os robôs
-    Dados de saída: lista de tuplas de um robô
-    '''
+    Dados de entrada: Lista de robôs
+    Dados de saída: Valor numérico
+    """
+
+    ids = ids_robos(listaRobos)
+
+    return list(map(lambda id: total_vitimas_robo(listaRobos, id), ids))
+
+
+def tuplas_robo_id(listaRobos, id):
+    """ Retorna as tuplas de um robô na lista dado seu id
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista com informações sobre todos os robôs
+    Dados de saída: Lista de tuplas de um robô
+    """
 
     if listaRobos == []:
         return []
     elif tupla1(listaRobos[0]) == id:
-        return [listaRobos[0]] + tuplasRoboId(listaRobos[1:], id)
+        return [listaRobos[0]] + tuplas_robo_id(listaRobos[1:], id)
     else:
-        return tuplasRoboId(listaRobos[1:], id)
+        return tuplas_robo_id(listaRobos[1:], id)
 
 from problemaA import *
 from problemaB import *

@@ -23,36 +23,36 @@ from functools import reduce
 # - Função para imprimir percurso de um robô - OK
 
 
-def tempoPercurso(listaRobos, id):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    robo = tuplasRoboId(listaRobos, id)
+def tempo_percurso(listaRobos, id):
+    """ Calcula o tempo de percurso de um robô até o momento de sua última ocorrência
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs e id de robô na lista
+    Dados de saída: Valor numérico do tempo de percurso de um robô
+    """
+
+    robo = tuplas_robo_id(listaRobos, id)
 
     if len(robo) == 0:
         return 0
-    elif len(robo) > 1:
-        tempo = pegaInstante(robo[-1]) - pegaInstante(robo[0]) # Considera o primeiro instante inteiro?
+    elif len(robo) == 1:
+        tempo = pega_instante(robo[-1])
         return tempo
     else:
-        tempo = pegaInstante(robo[-1])
+        tempo = pega_instante(robo[-1]) - pega_instante(robo[0])  # Considera o primeiro instante inteiro?
         return tempo
 
 
-def imprimeRobosMaisDistantes(listaRobos):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    ids = idsRobos(listaRobos)
-    indices = indicesMaisDistantes(listaRobos)
+def imprime_robos_mais_distantes(listaRobos):
+    """ Imprime os robôs que encontram-se mais distantes da origem
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: None
+    """
 
-    idsMaisDistantes = robosMaisDistantes(ids, indices)
+    ids = ids_robos(listaRobos)
+    indices = indices_ids_mais_Distantes(listaRobos)
+
+    idsMaisDistantes = robos_mais_distantes(ids, indices)
     if len(idsMaisDistantes) == 1:
         print("Robô mais distante:")
     else:
@@ -63,134 +63,133 @@ def imprimeRobosMaisDistantes(listaRobos):
         print("Percurso do robô:")
     else:
         print("Percursos dos robôs, respectivamente:")
-    print(list(map(lambda id: pegaPontosRobo(listaRobos, id), idsMaisDistantes)))
+    print(list(map(lambda id: pega_pontos_robo(listaRobos, id), idsMaisDistantes)))
 
     if len(idsMaisDistantes) == 1:
         print("Tempo total do percurso:")
     else:
         print("Tempo total dos percursos, respectivamente:")
-    print(list(map(lambda id: tempoPercurso(listaRobos, id), idsMaisDistantes)))
+    print(list(map(lambda id: tempo_percurso(listaRobos, id), idsMaisDistantes)))
 
-    return 1
+    return None
 
 
-def removeDuplicata(lista):
-    ''' Função removeDuplicata
-    Descrição: Cria uma nova lista dada uma lista de entrada sem elementos duplicados desta
+def remove_duplicata(lista):
+    """ Cria uma nova lista dada uma lista de entrada
+    sem os elementos duplicados desta
     Escopo: Função global paramétrica
-    Dados de entrada: lista válida
-    Dados de saída: lista sem elementos duplicados
-    '''
+    Dados de entrada: Lista válida
+    Dados de saída: Lista sem elementos duplicados
+    """
 
     if len(lista) < 2:
         return lista
     elif lista[0] not in lista[1:]:
-        return [lista[0]] + removeDuplicata(lista[1:])
+        return [lista[0]] + remove_duplicata(lista[1:])
     else:
-        return removeDuplicata(lista[1:])
+        return remove_duplicata(lista[1:])
 
 
-def idsRobos(listaRobos):
-    ''' Função idsRobos
-    Descrição: Cria uma lista com os ids dos robôs existentes
+def ids_robos(listaRobos):
+    """ Cria uma lista com os ids dos robôs existentes
     na lista de robôs (sem repetição)
     Escopo: Função global paramétrica
-    Dados de entrada: lista de robôs
-    Dados de saída: lista com ids dos robôs, sem repetição de id
-    '''
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista com ids dos robôs, sem repetição de id
+    """
 
     listaIdsRepetidos = list(map(tupla1, listaRobos))
-    return removeDuplicata(listaIdsRepetidos)
+    return remove_duplicata(listaIdsRepetidos)
 
 
-def caminhosPercorridos(listaRobos):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    ids = idsRobos(listaRobos)
-    caminhos = (map(lambda id: pegaPontosRobo(listaRobos, id), ids))
-    return list(caminhos)
+def caminhos_percorridos(listaRobos):
+    """ Retorna uma lista com todos os pontos percorridos por todos os robôs
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista de pontos
+    """
+
+    ids = ids_robos(listaRobos)
+    caminhos = list(map(lambda id: pega_pontos_robo(listaRobos, id), ids))
+    return caminhos
 
 
-def distanciasTotaisRobos(listaRobos):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    return list(map(distanciaTotal, caminhosPercorridos(listaRobos)))
+def ultimos_pontos_robos(listaRobos):
+    """ Retorna lista com últimos pontos de todos os robôs
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista com últimos pontos de todos os robôs
+    """
+
+    percursos = caminhos_percorridos(listaRobos)
+    return list(map(ultimo, percursos))
 
 
-def ultimosPontosRobos(listaRobos):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    percursos = caminhosPercorridos(listaRobos)
-    return list(map(pegaVitimas, percursos))
+def distancias_totais_robos(listaRobos):
+    """ Calcula as distâncias totais que todos os robôs percorreram
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista de
+    """
+
+    return list(map(distancia_total, caminhos_percorridos(listaRobos)))
 
 
-def distOrigemPonto(p):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    return distEuclid((0,0), p)
+def dist_origem_ponto(p):
+    """ Calcula a distância da origem até um ponto
+    Escopo: Função global paramétrica
+    Dados de entrada: p ponto real de duas coordenadas
+    Dados de saída: Valor numérico
+    """
+
+    return dist_euclid((0, 0), p)
 
 
-def distOrigemUltimoPonto(percursos):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    return list(map(lambda ponto: distOrigemPonto(ponto), percursos))
+def dist_origem_ultimo_ponto(percursos):
+    """ Calcula a distância da origem até o último ponto de uma lista de tuplas de robôs
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de percursos (lista de pontos) dos robôs
+    Dados de saída: Lista de valores numéricos
+    """
+
+    return list(map(lambda ponto: dist_origem_ponto(ponto), percursos))
 
 
-def indicesMaximos(lista):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    maximo = maxLista(lista)
+def indices_maximos(lista):
+    """ Retorna os índices de todas as ocorrências de valor máximo na lista
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista numérica
+    Dados de saída: Lista numérica de índices
+    """
+
+    maximo = max_lista(lista)
     return [x for x, i in enumerate(lista) if i == maximo]
 
 
-def indicesMaisDistantes(listaRobos):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    distsÚltimosPontos = distOrigemUltimoPonto(ultimosPontosRobos(listaRobos))
-    indices = indicesMaximos(distsÚltimosPontos)
+def indices_ids_mais_Distantes(listaRobos):
+    """ Retorna os índices dos ids dos robôs mais distantes
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista de índices
+    """
+
+    distsÚltimosPontos = dist_origem_ultimo_ponto(ultimos_pontos_robos(listaRobos))
+    indices = indices_maximos(distsÚltimosPontos)
 
     return indices
 
 
-def robosMaisDistantes(ids, indicesDistancia):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
+def robos_mais_distantes(ids, indicesDistancia):
+    """ Retorna ids dos robôs mais distantes
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de ids, lista de índices de robôs mais distantes
+    Dados de saída: Lista de ids de robôs mais distantes
+    """
+
     if len(indicesDistancia) == 1:
         return [ids[indicesDistancia[0]]]
     else:
-        return [ids[indicesDistancia[0]]] + robosMaisDistantes(ids, indicesDistancia[1:])
+        return [ids[indicesDistancia[0]]] + robos_mais_distantes(ids, indicesDistancia[1:])
 
 from problemaA import *
 from problemaC import *
