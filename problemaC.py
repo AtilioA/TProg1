@@ -1,5 +1,8 @@
+# Módulo com funções auxiliares
+# Autores: Atílio Antônio Dadalto
+# Disciplina: Programação I, 2019/1, ministrada por Jordana Sarmenghi Salamon em 2019/1
+
 from roboAux import *
-from math import *
 from functools import reduce
 
 # ============ QUESTÃO C ============ #
@@ -12,23 +15,20 @@ from functools import reduce
 # PLANEJAMENTO:
 # Criar as seguintes funções:
 # - Função para ordenar lista em ordem crescente - OK
-# - Função para aplicar a função da questão (a) em todos os robôs da lista de entrada - OK?
-# - Ordenar essa lista de distâncias e retornar (a menos que queira a lista de tuplas original, ver isso depois) - OK?
+# - Função para aplicar a função da questão (a) em todos os robôs da lista de entrada - OK
+# - Ordenar essa lista de distâncias - OK
 
-def exibeCaminhosRobôsCrescente(listaRobos):
-    ''' Função exibeCaminhosRobôsCrescente()
+def caminhosRobosCrescente(listaRobos):
+    ''' Função caminhosRobosCrescente()
     Descrição: Dada a lista de robôs, imprime o caminho de cada robô (em ordem crescente de distância)
     Escopo: Função global paramétrica
     Dados de entrada: A lista de dados sobre os robôs
     Dados de saída: Uma lista de distâncias ordenada
     '''
-    ids = idsRobos(listaRobos)
+    listaDistancias = distanciasTotaisRobos(listaRobos)
 
-    listaDistânciasOrdenadas = mergeSort(listaDistâncias)
-    print(listaDistânciasOrdenadas)
-    return listaDistânciasOrdenadas
-
-# def distanciasTotaisRobos(listaRobos, listaIds):
+    listaDistanciasOrdenadas = mergeSort(listaDistancias)
+    return listaDistanciasOrdenadas
 
 
 def mergeOrdenada(l1, l2):
@@ -56,6 +56,7 @@ def mergeOrdenada(l1, l2):
     else:
         return [l2[0]] + mergeOrdenada(l1, l2[1:])
 
+
 def mergeSort(lista):
     ''' Função mergeSort()
     Descrição: Dada uma lista de entrada, ordena-a por mergesort
@@ -68,3 +69,7 @@ def mergeSort(lista):
     else:
         metade = len(lista) // 2 # Pega o índice do meio da lista
         return mergeOrdenada(mergeSort(lista[:metade]), mergeSort(lista[metade:]))
+
+from problemaA import *
+from problemaB import *
+from problemaD import *

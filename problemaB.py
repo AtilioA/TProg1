@@ -1,12 +1,11 @@
 from roboAux import *
-from math import *
 from functools import reduce
-from problemaA import *
 
 # ============ QUESTÃO B ============ #
 # b) Determine qual dos robôs apresenta o seu último ponto de passagem no terreno de busca que
 #  possui a maior distância em relação à origem.
 #  Exiba o caminho percorrido pelo robô e o tempo total do percurso;
+
 # - Extrair, da lista de entrada, o último ponto de passagem de todos os robôs
 # - Determinar qual robô possui ponto mais longe da origem
 # - Imprimir caminho percorrido pelo robô, determinar tempo do percurso
@@ -18,10 +17,62 @@ from problemaA import *
 # Criar as seguintes funções:
 # - Função para obter uma lista com o último ponto de todos os robôs da lista de entrada - OK
 # - Função para calcular a distância da origem a todos esses pontos, retornando em uma lista - OK
-# - Função para extrair maior número da lista obtida no último item -OK
+# - Função para extrair maior número da lista obtida no último item - OK
 # - Função para buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs - OK
-# - Função para determinar tempo de percurso de um robô, dado seu percurso
+# - Função para determinar tempo de percurso de um robô, dado seu percurso - OK
 # - Função para imprimir percurso de um robô - OK
+
+
+def tempoPercurso(listaRobos, id):
+    ''' Função: nomeDaFunção()
+    Descrição: o que a função faz
+    Escopo: escopo da função (global/local, paramétrica/constante)
+    Dados de entrada: x, y válidos, etc
+    Dados de saída: z, w, l lista numérica, b valor booleano, etc
+    '''
+    robo = tuplasRoboId(listaRobos, id)
+
+    if len(robo) == 0:
+        return 0
+    elif len(robo) > 1:
+        tempo = pegaInstante(robo[-1]) - pegaInstante(robo[0]) # Considera o primeiro instante inteiro?
+        return tempo
+    else:
+        tempo = pegaInstante(robo[-1])
+        return tempo
+
+
+def imprimeRobosMaisDistantes(listaRobos):
+    ''' Função: nomeDaFunção()
+    Descrição: o que a função faz
+    Escopo: escopo da função (global/local, paramétrica/constante)
+    Dados de entrada: x, y válidos, etc
+    Dados de saída: z, w, l lista numérica, b valor booleano, etc
+    '''
+    ids = idsRobos(listaRobos)
+    indices = indicesMaisDistantes(listaRobos)
+
+    idsMaisDistantes = robosMaisDistantes(ids, indices)
+    if len(idsMaisDistantes) == 1:
+        print("Robô mais distante:")
+    else:
+        print("Robôs mais distantes:")
+    print(idsMaisDistantes)
+
+    if len(idsMaisDistantes) == 1:
+        print("Percurso do robô:")
+    else:
+        print("Percursos dos robôs, respectivamente:")
+    print(list(map(lambda id: pegaPontosRobo(listaRobos, id), idsMaisDistantes)))
+
+    if len(idsMaisDistantes) == 1:
+        print("Tempo total do percurso:")
+    else:
+        print("Tempo total dos percursos, respectivamente:")
+    print(list(map(lambda id: tempoPercurso(listaRobos, id), idsMaisDistantes)))
+
+    return 1
+
 
 def removeDuplicata(lista):
     ''' Função removeDuplicata
@@ -60,7 +111,7 @@ def caminhosPercorridos(listaRobos):
     Dados de saída: z, w, l lista numérica, b valor booleano, etc
     '''
     ids = idsRobos(listaRobos)
-    caminhos = (map(lambda x: pegaPontosRobo(listaRobos, x), ids))
+    caminhos = (map(lambda id: pegaPontosRobo(listaRobos, id), ids))
     return list(caminhos)
 
 
@@ -74,17 +125,6 @@ def distanciasTotaisRobos(listaRobos):
     return list(map(distanciaTotal, caminhosPercorridos(listaRobos)))
 
 
-def imprimePercurso(listaRobos, id):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
-    Escopo: escopo da função (global/local, paramétrica/constante)
-    Dados de entrada: x, y válidos, etc
-    Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
-    print(pegaPontosRobo(listaRobos, id))
-    return 1
-
-
 def ultimosPontosRobos(listaRobos):
     ''' Função: nomeDaFunção()
     Descrição: o que a função faz
@@ -93,7 +133,7 @@ def ultimosPontosRobos(listaRobos):
     Dados de saída: z, w, l lista numérica, b valor booleano, etc
     '''
     percursos = caminhosPercorridos(listaRobos)
-    return list(map(tupla4, percursos))
+    return list(map(pegaVitimas, percursos))
 
 
 def distOrigemPonto(p):
@@ -113,7 +153,7 @@ def distOrigemUltimoPonto(percursos):
     Dados de entrada: x, y válidos, etc
     Dados de saída: z, w, l lista numérica, b valor booleano, etc
     '''
-    return list(map(lambda x: distOrigemPonto(x), percursos))
+    return list(map(lambda ponto: distOrigemPonto(ponto), percursos))
 
 
 def indicesMaximos(lista):
@@ -135,9 +175,6 @@ def indicesMaisDistantes(listaRobos):
     Dados de saída: z, w, l lista numérica, b valor booleano, etc
     '''
     distsÚltimosPontos = distOrigemUltimoPonto(ultimosPontosRobos(listaRobos))
-    maiorDistância = maxLista(distsÚltimosPontos)
-
-    ids = idsRobos(listaRobos)
     indices = indicesMaximos(distsÚltimosPontos)
 
     return indices
@@ -155,5 +192,6 @@ def robosMaisDistantes(ids, indicesDistancia):
     else:
         return [ids[indicesDistancia[0]]] + robosMaisDistantes(ids, indicesDistancia[1:])
 
-
-# print(ultimosPontosRobos(listaRobos))
+from problemaA import *
+from problemaC import *
+from problemaD import *
