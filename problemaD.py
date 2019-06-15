@@ -50,10 +50,14 @@ def somaLista(lista):
     Dados de entrada: Lista numérica
     Dados de saída: Valor numérico
     '''
-    if len(lista) == 0:
-        return 0
-    else:
-        return reduce(lambda x, y: x + y, lista)
+    try:
+        if len(lista) == 0:
+            print("Lista vazia não possui valor de soma")
+            raise Exception()
+        else:
+            return reduce(lambda x, y: x + y, lista)
+    except:
+        pass
 
 
 def listaVitimasRobo(listaRobos, id):

@@ -21,22 +21,6 @@ def maxLista(lista):
     except:
         pass
 
-def minLista(lista):
-    ''' Função: minLista()
-    Descrição: Retorna o menor elemento de uma lista (assumida como numérica)
-    Escopo: Função global paramétrica
-    Dados de entrada: Lista (assumida como numérica)
-    Dados de saída: Menor elemento da lista
-    '''
-    try:
-        if len(lista) == 0:
-            print("Lista vazia não possui mínimo")
-            raise Exception()
-        else:
-            return reduce(lambda a, b: a if (a < b) else b, lista)
-    except:
-        pass
-
 def pegaID(tuplaRobos):
     ''' Função: pegaID()
     Descrição: retorna o primeiro elemento da tupla de um robô,
@@ -45,7 +29,15 @@ def pegaID(tuplaRobos):
     Dados de entrada: tupla de um robô
     Dados de saída: primeiro elemento da tupla de um robô
     '''
-    return tuplaRobos[0]
+
+    try:
+        if len(tuplaRobos) < 2: # Não funciona com < 4 (descobrir por quê)
+            print("Tupla não possui elementos o suficiente.")
+            raise Exception()
+        else:
+            return tuplaRobos[0]
+    except:
+        pass
 
 
 def pegaInstante(tuplaRobos):
@@ -57,7 +49,14 @@ def pegaInstante(tuplaRobos):
     Dados de saída: segundo elemento da tupla de um robô
     '''
 
-    return tuplaRobos[1]
+    try:
+        if len(tuplaRobos) < 2: # Não funciona com < 4 (descobrir por quê)
+            print("Tupla não possui elementos o suficiente.")
+            raise Exception()
+        else:
+            return tuplaRobos[1]
+    except:
+        pass
 
 
 def pegaLocal(tuplaRobos):
@@ -69,7 +68,15 @@ def pegaLocal(tuplaRobos):
     Dados de saída: terceiro elemento da tupla de um robô
     '''
 
-    return tuplaRobos[2]
+    try:
+        if len(tuplaRobos) < 2: # Não funciona com < 4 (descobrir por quê)
+            print("Tupla não possui elementos o suficiente.")
+            raise Exception()
+        else:
+            return tuplaRobos[2]
+    except:
+        pass
+
 
 
 def pegaVitimas(tuplaRobos):
@@ -81,7 +88,14 @@ def pegaVitimas(tuplaRobos):
     Dados de saída: quarto (último) elemento da tupla de um robô
     '''
 
-    return tuplaRobos[-1]
+    try:
+        if len(tuplaRobos) < 2: # Não funciona com < 4 (descobrir por quê)
+            print("Tupla não possui elementos o suficiente.")
+            raise Exception()
+        else:
+            return tuplaRobos[-1]
+    except:
+        pass
 
 
 def tupla1(tupla2):
@@ -92,7 +106,14 @@ def tupla1(tupla2):
     Dados de saída: primeiro elemento da tupla
     '''
 
-    return tupla2[0]
+    try:
+        if len(tupla2) == 0:
+            print("Tupla vazia não possui elementos.")
+            raise Exception()
+        else:
+            return tupla2[0]
+    except:
+        pass
 
 
 def tupla2(tupla2):
@@ -103,4 +124,11 @@ def tupla2(tupla2):
     Dados de saída: segundo (último) elemento da tupla
     '''
 
-    return tupla2[-1]
+    try:
+        if len(tupla2) < 2:
+            print("Tupla não possui elementos o suficiente.")
+            raise Exception()
+        else:
+            return tupla2[-1]
+    except:
+        pass
