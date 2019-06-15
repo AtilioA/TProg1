@@ -11,13 +11,24 @@
 # o número de vítimas presentes na área de visibilidade do robô.
 
 # Exemplo oficial de entrada
-listaRobos = [('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2), ('robo3', 3, (5, 4), 3), ('robo3', 4, (8, 1), 4), ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4), ('robo5', 7, (6, 4), 5), ('robo3', 8, (7, 2), 3), ('robo5', 9, (6, 4), 4)]
+listaRobos = [
+    ('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2), ('robo3', 3, (5, 4), 3),
+    ('robo3', 4, (8, 1), 4), ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4),
+    ('robo5', 7, (6, 4), 5), ('robo3', 8, (7, 2), 3), ('robo5', 9, (6, 4), 4)
+]
 
 # Entradas criadas por mim
-listaRobos2 = [('robo28', 1, (1, 1), 3), ('robo1', 2, (9, 11), 14), ('robo2', 3, (1, 0), 1), ('robo28', 4, (2, 3), 4), ('robo1', 5, (4, 5), 5), ('robo28', 6, (3, 2), 2), ('robo32', 7, (4, 5), 2), ('robo11', 8, (11, 11), 11)]
+listaRobos2 = [
+    ('robo28', 1, (1, 1), 3), ('robo1', 2, (9, 11), 14), ('robo2', 3, (1, 0), 1),
+    ('robo28', 4, (2, 3), 4), ('robo1', 5, (4, 5), 5), ('robo28', 6, (3, 2), 2),
+    ('robo32', 7, (4, 5), 2), ('robo11', 8, (11, 11), 11)
+]
 
-listaRobos3 = [('robo666', 1, (1, 1), 3), ('robo0', 2, (-3, -6), 14), ('robo2', 3, (-6, 0), 100), ('robo33', 4, (5, 5), 4), ('robo33', 5, (5, 5), 4), ('robo17', 6, (3, 2), 2), ('robo38', 7, (4, 5), 2), ('robo2077', 8, (16, 4), 2020)]
-
+listaRobos3 = [
+    ('robo666', 1, (1, 1), 3), ('robo0', 2, (-3, -6), 14), ('robo2', 3, (-6, 0), 100),
+    ('robo33', 4, (5, 5), 4), ('robo33', 5, (5, 5), 4), ('robo17', 6, (3, 2), 2),
+    ('robo38', 7, (4, 5), 2), ('robo2077', 8, (16, 4), 2020)
+]
 
 # Importação de módulos
 # "(Ao importar funções de algum módulo, utilize a opção de importação específica)"
@@ -38,12 +49,11 @@ from functools import reduce
 
 # Vamos comentar as funções assim:
 def template(entradas):
-    ''' Função: nomeDaFunção()
-    Descrição: o que a função faz
+    """ o que a função faz
     Escopo: escopo da função (global/local, paramétrica/constante)
     Dados de entrada: x, y válidos, etc
     Dados de saída: z, w, l lista numérica, b valor booleano, etc
-    '''
+    """
 
     # Resto da função. A validação ocorre aqui, com try, Exception() e etc
 
