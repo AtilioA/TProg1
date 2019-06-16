@@ -1,9 +1,8 @@
-# Módulo com funções auxiliares
+# Módulo com funções para solucionar o problema C
 # Autores: Atílio Antônio Dadalto
-# Disciplina: Programação I, 2019/1, ministrada por Jordana Sarmenghi Salamon em 2019/1
+# Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
-from roboAux import *
-from functools import reduce
+from problemaB import *
 
 # ============ QUESTÃO C ============ #
 # c) Exiba os caminhos percorridos por todos os robôs que entraram no terreno de busca,
@@ -77,7 +76,3 @@ def merge_sort(lista):
     else:
         metade = len(lista) // 2  # Pega o índice do meio da lista
         return merge_ordenada(merge_sort(lista[:metade]), merge_sort(lista[metade:]))
-
-from problemaA import *
-from problemaB import *
-from problemaD import *

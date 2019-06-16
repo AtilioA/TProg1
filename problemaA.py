@@ -1,4 +1,7 @@
-from functools import reduce
+# Módulo com funções para solucionar o problema A
+# Autores: Atílio Antônio Dadalto
+# Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
+
 from math import *
 
 from roboAux import *
@@ -14,7 +17,7 @@ from roboAux import *
 # PLANEJAMENTO:
 # Criar as seguintes funções:
 # - Função para cálculo de distância no plano cartesiano - OK
-# - Função para extrair tuplas de uma lista dado um elemento identificador das tuplas - OK
+# -
 
 
 def dist_euclid(p1, p2):

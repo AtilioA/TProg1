@@ -1,3 +1,8 @@
+# Script para testes
+# Autores: Atílio Antônio Dadalto
+# Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
+
+
 from problemaA import *
 from problemaB import *
 from problemaC import *
@@ -87,7 +92,7 @@ print("Problema D:")
 # print(total_vitimas_robo(listaRobosAleatória, 'roboJordana'))
 # print(total_vitimas_robos(listaRobosAleatória))
 listaIDsMaisVitimas = ids_mais_vitimas(listaRobosAleatória)
-if listaIDsMaisVitimas != None:
+if listaIDsMaisVitimas is not None:
     print(f"Robôs que avistaram mais vítimas: {listaIDsMaisVitimas},",
           f"avistando {total_vitimas_robo(listaRobosAleatória, listaIDsMaisVitimas[0])} vítimas.")
 else:

@@ -1,5 +1,6 @@
-from roboAux import *
-from functools import reduce
+# Módulo com funções para solucionar o problema B
+# Autores: Atílio Antônio Dadalto
+# Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
 # ============ QUESTÃO B ============ #
 # b) Determine qual dos robôs apresenta o seu último ponto de passagem no terreno de busca que

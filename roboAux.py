@@ -1,6 +1,6 @@
 # Módulo com funções auxiliares
 # Autores: Atílio Antônio Dadalto
-# Disciplina: Programação I, 2019/1, ministrada por Jordana Sarmenghi Salamon em 2019/1
+# Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
 from functools import reduce
 

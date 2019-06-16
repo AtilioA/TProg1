@@ -1,5 +1,10 @@
+# Módulo com funções para solucionar o problema D
+# Autores: Atílio Antônio Dadalto
+# Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
+
 from roboAux import *
-from functools import reduce
+from problemaC import *
+
 
 # ============ QUESTÃO D ============ #
 # d) Forneça a identidade do(s) robô(s) que conseguiu(ram) informar o maior número de vítimas
@@ -111,7 +116,3 @@ def tuplas_robo_id(listaRobos, id):
         return [listaRobos[0]] + tuplas_robo_id(listaRobos[1:], id)
     else:
         return tuplas_robo_id(listaRobos[1:], id)
-
-from problemaA import *
-from problemaB import *
-from problemaC import *
