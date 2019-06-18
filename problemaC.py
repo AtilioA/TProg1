@@ -26,15 +26,14 @@ def caminhos_robos_crescente(listaRobos):
     """
 
     try:
-        if len(listaRobos) == 0:
-            print("Lista vazia não possui robôs")
-            raise Exception()
+        if len(listaRobos) == 0:  # ValueError
+            print("Lista vazia não possui robôs.")
         else:
             listaDistancias = distancias_totais_robos(listaRobos)
 
             listaDistanciasOrdenadas = merge_sort(listaDistancias)
             return listaDistanciasOrdenadas
-    except:
+    except ValueError:
         pass
 
 

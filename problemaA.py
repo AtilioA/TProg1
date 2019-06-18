@@ -58,7 +58,8 @@ def pega_pontos_robo(listaRobos, id):
 
 def distancia_total(pontos):
     """ Calcula a distância total entre uma lista de pontos
-    somando a distância entre um ponto e o próximo até o fim da lista
+    somando a distância entre um ponto e o próximo até o fim da lista.
+    Assume que a origem inicia a lista de pontos.
     Escopo: função global paramétrica
     Dados de entrada: Lista de pontos
     Dados de saída: Distância total somando a distância entre um ponto e o próximo até o fim da lista
@@ -66,14 +67,13 @@ def distancia_total(pontos):
     """
 
     try:
-        if len(pontos) < 2:  # Precisamos de ao menos 2 pontos para calcular distância
+        if len(pontos) < 2:  # ValueError
             print("Robô não existe ou não enviou dados para a CP.")
-            raise Exception()
         elif len(pontos) == 2:
             return round(dist_euclid(pontos[0], pontos[1]), 2)
         else:
             return round(dist_euclid(pontos[0], pontos[1]), 2) + distancia_total(pontos[1:])
-    except:
+    except IndexError:  # Precisamos de ao menos 2 pontos para calcular distância
         pass
 
 

@@ -35,11 +35,11 @@ def tempo_percurso(listaRobos, id):
 
     if len(robo) == 0:
         return 0
-    elif len(robo) == 1:
+    elif len(robo) == 1:  # Com apenas uma ocorrência, basta pegar o instante desta
         tempo = pega_instante(robo[-1])
         return tempo
     else:
-        tempo = pega_instante(robo[-1]) - pega_instante(robo[0])  # Considera o primeiro instante inteiro?
+        tempo = pega_instante(robo[-1]) - pega_instante(robo[0])
         return tempo
 
 
@@ -51,9 +51,8 @@ def imprime_robos_mais_distantes(listaRobos):
     """
 
     try:
-        if len(listaRobos) == 0:
-            print("Lista vazia não possui robôs")
-            raise Exception
+        if len(listaRobos) == 0:  # ValueError
+            print("Lista vazia não possui robôs.")
         else:
             ids = ids_robos(listaRobos)
             indices = indices_ids_mais_distantes(listaRobos)
@@ -78,7 +77,7 @@ def imprime_robos_mais_distantes(listaRobos):
             print(list(map(lambda id: tempo_percurso(listaRobos, id), idsMaisDistantes)))
 
             return None
-    except:
+    except TypeError:
         pass
 
 
@@ -194,13 +193,13 @@ def robos_mais_distantes(ids, indicesDistancia):
     Dados de saída: Lista de ids de robôs mais distantes
     """
     try:
-        if len(indicesDistancia) == 0:
-            raise Exception()
+        if len(indicesDistancia) == 0:  # ValueError
+            print("Lista vazia não possui robôs.")
         elif len(indicesDistancia) == 1:
             return [ids[indicesDistancia[0]]]
         else:
             return [ids[indicesDistancia[0]]] + robos_mais_distantes(ids, indicesDistancia[1:])
-    except:
+    except ValueError:
         pass
 
 from problemaA import *

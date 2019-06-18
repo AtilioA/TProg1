@@ -44,8 +44,8 @@ def ids_mais_vitimas(listaRobos):
     """
 
     try:
-        if len(listaRobos) == 0:
-            raise Exception()
+        if len(listaRobos) == 0:  # ValueError
+            print("Lista vazia não possui robôs.")
         else:
             ids = ids_robos(listaRobos)
             indices = indices_mais_vitimas(listaRobos)
@@ -53,7 +53,7 @@ def ids_mais_vitimas(listaRobos):
             idsVitimas = robos_mais_vitimas(ids, indices)
 
             return idsVitimas
-    except:
+    except ValueError:
         pass
 
 

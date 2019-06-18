@@ -10,14 +10,14 @@ from problemaB import *
 from problemaC import *
 from problemaD import *
 
-from random import *
+from random import randint
 
 # Compreensão do problema e planejamento da solução
 # "Cada função deve ter um comentário com sua descrição, dados de entrada e saída.
 # Na descrição, diga se a função é global ou local, paramétrica ou não, e por quê.
 # Realizar a validação dos dados."
 
-# ============ TESTES ============ #
+# ============ TESTES ============
 # "Os testes propriamente ditos devem estar automatizados no arquivo de código"
 # Aqui ficarão os testes do programa, inclusive os testes que estarão na versão final
 
@@ -65,40 +65,48 @@ for i in range(1, randint(1, 50)):
                                 i,
                                 (randint(1, 15), randint(1, 15)),
                                 randint(0, 10)))
+# listaRobosAleatória = []
+
 
 print("\n\n====== TESTES ======\n\n")
 
-ids = ids_robos(listaRobos3)
-indices = indices_ids_mais_distantes(listaRobos3)
+listaRobosEscolhida = listaRobos3
 
-print(f"Lista de robôs recebida pela CP:\n{listaRobos3}")
+ids = ids_robos(listaRobosEscolhida)
+indices = indices_ids_mais_distantes(listaRobosEscolhida)
+
+print(f"Lista de robôs recebida pela CP:\n{listaRobosEscolhida}")
 print(f"Robôs:\n{ids}")
 
 print(f"\nQuantidade de robôs: {len(ids)}")
-print(f"Quantidade de ocorrências: {len(listaRobos3)}\n")
+print(f"Quantidade de ocorrências: {len(listaRobosEscolhida)}\n")
 
 
 print("Problema A:")
 # idEntrada = input("Informe um id para calcular distância percorrida: ")
 # idEntrada = "robo0"
 
-print(f"Distância total de {'roboÍcaroCarregadoNoTrabAfkNaBase'}:",
-      f"{distancia_totalRobo(listaRobos3, 'roboÍcaroCarregadoNoTrabAfkNaBase')}.")
+roboEscolhido = 'roboÍcaroCarregadoNoTrabAfkNaBase'
+distRoboEscolhido = distancia_totalRobo(listaRobosEscolhida, roboEscolhido)
+if distRoboEscolhido is not None:
+    print(f"Distância total de {roboEscolhido}: {distRoboEscolhido}.")
+else:
+    pass
 print("\n")
 
 print("Problema B:")
-imprime_robos_mais_distantes(listaRobos3)
+imprime_robos_mais_distantes(listaRobosEscolhida)
 print("\n")
 
 print("Problema C:")
-listaDistanciasOrdenadas = caminhos_robos_crescente(listaRobos3)
+listaDistanciasOrdenadas = caminhos_robos_crescente(listaRobosEscolhida)
 print(f"Imprimindo distâncias em ordem crescente:\n{listaDistanciasOrdenadas}")
 print("\n")
 
 print("Problema D:")
-listaIDsMaisVitimas = ids_mais_vitimas(listaRobos3)
+listaIDsMaisVitimas = ids_mais_vitimas(listaRobosEscolhida)
 if listaIDsMaisVitimas is not None:
     print(f"Robôs que avistaram mais vítimas: {listaIDsMaisVitimas},",
-          f"avistando {total_vitimas_robo(listaRobos3, listaIDsMaisVitimas[0])} vítimas.")
+          f"avistando {total_vitimas_robo(listaRobosEscolhida, listaIDsMaisVitimas[0])} vítimas.")
 else:
-    print("Lista vazia não possui robôs")
+    print("Lista vazia não possui robôs.")

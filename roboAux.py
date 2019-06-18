@@ -13,12 +13,11 @@ def max_lista(lista):
     """
 
     try:
-        if len(lista) == 0:
+        if len(lista) == 0:  # ValueError
             print("Lista vazia não possui máximo")
-            raise Exception()
         else:  # Reduce para fazer comparações e reduzir lista a um número (o retorno da lambda não é booleano)
             return reduce(lambda a, b: a if (a > b) else b, lista)
-    except:
+    except ValueError:
         pass
 
 
@@ -30,12 +29,11 @@ def soma_lista(lista):
     """
 
     try:
-        if len(lista) == 0:
+        if len(lista) == 0:  # ValueError
             print("Lista vazia não possui valor de soma")
-            raise Exception()
         else:
             return reduce(lambda x, y: x + y, lista)
-    except:
+    except ValueError:
         pass
 
 
@@ -48,12 +46,11 @@ def pega_id(tuplaRobos):
     """
 
     try:
-        if len(tuplaRobos) < 2:  # Não funciona com < 4 (descobrir por quê)
-            print("Tupla não possui elementos o suficiente.")
-            raise Exception()
+        if len(tuplaRobos) != 4:  # ValueError
+            print("Tupla de robôs malformada.")
         else:
             return tuplaRobos[0]
-    except:
+    except ValueError:
         pass
 
 
@@ -66,12 +63,11 @@ def pega_instante(tuplaRobos):
     """
 
     try:
-        if len(tuplaRobos) < 2:  # Não funciona com < 4 (descobrir por quê)
-            print("Tupla não possui elementos o suficiente.")
-            raise Exception()
+        if len(tuplaRobos) != 4:  # ValueError
+            print("Tupla de robôs malformada.")
         else:
             return tuplaRobos[1]
-    except:
+    except ValueError:
         pass
 
 
@@ -84,12 +80,11 @@ def pega_local(tuplaRobos):
     """
 
     try:
-        if len(tuplaRobos) < 2:  # Não funciona com < 4 (descobrir por quê)
-            print("Tupla não possui elementos o suficiente.")
-            raise Exception()
+        if len(tuplaRobos) != 4:  # ValueError
+            print("Tupla de robôs malformada.")
         else:
             return tuplaRobos[2]
-    except:
+    except ValueError:
         pass
 
 
@@ -102,12 +97,11 @@ def pega_vitimas(tuplaRobos):
     """
 
     try:
-        if len(tuplaRobos) < 2:  # Não funciona com < 4 (descobrir por quê)
-            print("Tupla não possui elementos o suficiente.")
-            raise Exception()
+        if len(tuplaRobos) != 4:  # ValueError
+            print("Tupla de robôs malformada.")
         else:
             return tuplaRobos[-1]
-    except:
+    except ValueError:
         pass
 
 
@@ -119,12 +113,11 @@ def tupla1(tupla2):
     """
 
     try:
-        if len(tupla2) == 0:
+        if len(tupla2) == 0:  # ValueError
             print("Tupla vazia não possui elementos.")
-            raise Exception()
         else:
             return tupla2[0]
-    except:
+    except ValueError:
         pass
 
 
@@ -136,12 +129,11 @@ def tupla2(tupla2):
     """
 
     try:
-        if len(tupla2) < 2:
+        if len(tupla2) < 2:  # ValueError
             print("Tupla não possui elementos o suficiente.")
-            raise Exception()
         else:
             return tupla2[-1]
-    except:
+    except ValueError:
         pass
 
 
@@ -153,10 +145,9 @@ def ultimo(subscriptable):
     """
 
     try:
-        if len(subscriptable) == 0:
-            print("Não possui elementos o suficiente.")
-            raise Exception()
+        if len(subscriptable) == 0:  # ValueError
+            print("Objeto não possui elementos o suficiente.")
         else:
             return subscriptable[-1]
-    except:
+    except ValueError:
         pass
