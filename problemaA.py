@@ -55,6 +55,7 @@ def pega_pontos_robo(listaRobos, id):
     # Os robôs partem da origem, portanto devemos adicioná-la à lista de pontos
     return [(0, 0)] + list(map(pega_local, tuplasRobo))
 
+
 def distancia_total(pontos):
     """ Calcula a distância total entre uma lista de pontos
     somando a distância entre um ponto e o próximo até o fim da lista
@@ -65,7 +66,7 @@ def distancia_total(pontos):
     """
 
     try:
-        if len(pontos) < 2: # Precisamos de ao menos 2 pontos para calcular distância
+        if len(pontos) < 2:  # Precisamos de ao menos 2 pontos para calcular distância
             print("Robô não existe ou não enviou dados para a CP.")
             raise Exception()
         elif len(pontos) == 2:
