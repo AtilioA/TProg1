@@ -37,6 +37,7 @@ def lista_tupla_robo_id(listaRobos, id):
     Dados de saída: Tuplas de informações um único robô da lista de robôs
     """
 
+    # Filtra robôs com id desejado da lista de robôs
     return list(filter(lambda robo: (pega_id(robo) == id), listaRobos))
     # return [x for x in listaRobos if tupla1(x) == id]
 
@@ -51,21 +52,8 @@ def pega_pontos_robo(listaRobos, id):
 
     tuplasRobo = lista_tupla_robo_id(listaRobos, id)
 
-    # Os robôs partem da origem
+    # Os robôs partem da origem, portanto devemos adicioná-la à lista de pontos
     return [(0, 0)] + list(map(pega_local, tuplasRobo))
-
-
-def pega_pontos_tupla_robo(tuplasRobo):
-    """ Cria todos os pontos percorridos por um robô de uma lista de tuplas de informações um mesmo robô
-    Escopo: função global paramétrica
-    Dados de entrada: Lista de tuplas de um robô
-    Dados de saída: Lista de todos os pontos percorridos pelo robô;
-    inclui origem como ponto de partida.
-    """
-
-    # Os robôs partem da origem
-    return [(0, 0)] + list(map(pega_local, tuplasRobo))
-
 
 def distancia_total(pontos):
     """ Calcula a distância total entre uma lista de pontos
@@ -77,7 +65,7 @@ def distancia_total(pontos):
     """
 
     try:
-        if len(pontos) < 2:
+        if len(pontos) < 2: # Precisamos de ao menos 2 pontos para calcular distância
             print("Robô não existe ou não enviou dados para a CP.")
             raise Exception()
         elif len(pontos) == 2:
@@ -95,6 +83,6 @@ def distancia_totalRobo(listaRobos, id):
     Dados de saída: Lista de todos os pontos percorridos pelo robô
     """
 
-    tuplasRobo = lista_tupla_robo_id(listaRobos, id)
-    pontosPercorridosRobo = pega_pontos_tupla_robo(tuplasRobo)
+    pontosPercorridosRobo = pega_pontos_robo(listaRobos, id)
+
     return distancia_total(pontosPercorridosRobo)
