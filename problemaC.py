@@ -58,10 +58,10 @@ def merge_ordenada(l1, l2):
         return l2
     elif len(l2) == 0:
         return l1
-    elif l1[0] < l2[0]:
-        return [l1[0]] + merge_ordenada(l1[1:], l2)
+    elif l1[0] <= l2[0]:
+        return [l1[0]] + merge_ordenada(l1[1:], l2)  # l1[0] é menor ou igual, portanto será primeiro
     else:
-        return [l2[0]] + merge_ordenada(l1, l2[1:])
+        return [l2[0]] + merge_ordenada(l1, l2[1:])  # l2[0] é menor, portanto será primeiro
 
 
 def merge_sort(lista):

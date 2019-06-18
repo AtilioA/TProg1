@@ -16,7 +16,7 @@ def max_lista(lista):
         if len(lista) == 0:
             print("Lista vazia não possui máximo")
             raise Exception()
-        else:
+        else:  # Reduce para fazer comparações e reduzir lista a um número (o retorno da lambda não é booleano)
             return reduce(lambda a, b: a if (a > b) else b, lista)
     except:
         pass
