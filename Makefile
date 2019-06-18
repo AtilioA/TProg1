@@ -1,5 +1,4 @@
-PYV:=$(shell python -c "import sys;t='{v[0]}{v[1]}'.format(v=list(sys.version_info[:2]));sys.stdout.write(t)")
-
+PYV  := 3.7
 MAIN := trab1.py
 CC   := python$(PYV)
 

@@ -30,7 +30,7 @@ def dist_euclid(p1, p2):
     return round(sqrt((tupla1(p1) - tupla1(p2))**2 + (tupla2(p1) - tupla2(p2))**2), 4)
 
 
-def lista_tupla_robo_id(listaRobos, id):
+def lista_tuplas_robo_id(listaRobos, id):
     """ Extrai todas as tuplas de um mesmo robô da lista de robôs de entrada
     Escopo: função global paramétrica
     Dados de entrada: Lista de robôs de entrada e id de um robô
@@ -50,7 +50,7 @@ def pega_pontos_robo(listaRobos, id):
     inclui origem como ponto de partida.
     """
 
-    tuplasRobo = lista_tupla_robo_id(listaRobos, id)
+    tuplasRobo = lista_tuplas_robo_id(listaRobos, id)
 
     # Os robôs partem da origem, portanto devemos adicioná-la à lista de pontos
     return [(0, 0)] + list(map(pega_local, tuplasRobo))
@@ -77,7 +77,8 @@ def distancia_total(pontos):
         pass
 
 
-def distancia_totalRobo(listaRobos, id):
+# Função principal do problema A
+def distancia_total_robo(listaRobos, id):
     """ Calcula a distância percorrida por um robô da lista de robôs dado seu id
     Escopo: Função global paramétrica
     Dados de entrada: Lista de dados de robôs e id de um robô

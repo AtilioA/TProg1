@@ -31,18 +31,16 @@ def tempo_percurso(listaRobos, id):
     Dados de saída: Valor numérico do tempo de percurso de um robô
     """
 
-    robo = tuplas_robo_id(listaRobos, id)
+    robo = lista_tuplas_robo_id(listaRobos, id)
 
-    if len(robo) == 0:
+    if not robo:
         return 0
-    elif len(robo) == 1:  # Com apenas uma ocorrência, basta pegar o instante desta
+    else:
         tempo = pega_instante(robo[-1])
         return tempo
-    else:
-        tempo = pega_instante(robo[-1]) - pega_instante(robo[0])
-        return tempo
 
 
+# Função principal do problema B
 def imprime_robos_mais_distantes(listaRobos):
     """ Imprime os robôs que encontram-se mais distantes da origem
     Escopo: Função global paramétrica
@@ -51,7 +49,7 @@ def imprime_robos_mais_distantes(listaRobos):
     """
 
     try:
-        if len(listaRobos) == 0:  # ValueError
+        if not listaRobos:  # ValueError
             print("Lista vazia não possui robôs.")
         else:
             ids = ids_robos(listaRobos)
@@ -196,7 +194,7 @@ def robos_mais_distantes(ids, indicesDistancia):
     """
 
     try:
-        if len(indicesDistancia) == 0:  # ValueError
+        if not indicesDistancia:  # ValueError
             print("Lista vazia não possui robôs.")
         elif len(indicesDistancia) == 1:
             return [ids[indicesDistancia[0]]]
@@ -207,4 +205,3 @@ def robos_mais_distantes(ids, indicesDistancia):
 
 from problemaA import *
 from problemaC import *
-from problemaD import *

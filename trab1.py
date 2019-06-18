@@ -4,13 +4,14 @@
 
 
 # Importação de módulos
-# "(Ao importar funções de algum módulo, utilize a opção de importação específica)"
-from problemaA import *
-from problemaB import *
-from problemaC import *
-from problemaD import *
+# "Ao importar funções de algum módulo, utilize a opção de importação específica"
+from problemaA import distancia_total_robo
+from problemaB import ids_robos, indices_ids_mais_distantes, imprime_robos_mais_distantes
+from problemaC import caminhos_robos_crescente
+from problemaD import ids_mais_vitimas, total_vitimas_robo
 
-from random import randint
+from random import randint  # Para gerar entradas
+from os import system  # Para limpar o terminal
 
 # Compreensão do problema e planejamento da solução
 # "Cada função deve ter um comentário com sua descrição, dados de entrada e saída.
@@ -64,52 +65,53 @@ for i in range(1, randint(1, 50)):
     listaRobosAleatória.append((f'robo{randint(0, 10)}',
                                 i,
                                 (randint(1, 15), randint(1, 15)),
-                                randint(0, 10)))
+                                randint(1, 10)))
 # listaRobosAleatória = []
 
 
 print("\n\n====== TESTES ======\n\n")
 
-listaRobosEscolhida = listaRobos3
+if __name__ == "__main__":
 
-ids = ids_robos(listaRobosEscolhida)
-indices = indices_ids_mais_distantes(listaRobosEscolhida)
+    system('cls||clear')
 
-print(f"Lista de robôs recebida pela CP:\n{listaRobosEscolhida}")
-print(f"Robôs:\n{ids}")
+    listaRobosEscolhida = listaRobosAleatória
 
-print(f"\nQuantidade de robôs: {len(ids)}")
-print(f"Quantidade de ocorrências: {len(listaRobosEscolhida)}\n")
+    ids = ids_robos(listaRobosEscolhida)
+    indices = indices_ids_mais_distantes(listaRobosEscolhida)
 
+    print(f"Lista de robôs recebida pela CP:\n{listaRobosEscolhida}")
+    print(f"Robôs:\n{ids}")
 
-print("Problema A:")
-# idEntrada = input("Informe um id para calcular distância percorrida: ")
-# idEntrada = "robo0"
-
-roboEscolhido = 'roboÍcaroCarregadoNoTrabAfkNaBase'
-distRoboEscolhido = distancia_totalRobo(listaRobosEscolhida, roboEscolhido)
-if distRoboEscolhido is not None:
-    print(f"Distância total de {roboEscolhido}: {distRoboEscolhido}.")
-else:
-    pass
-print("\n")
-
-print("Problema B:")
-imprime_robos_mais_distantes(listaRobosEscolhida)
-print("\n")
-
-print("Problema C:")
-listaDistanciasOrdenadas = caminhos_robos_crescente(listaRobosEscolhida)
-print(f"Imprimindo distâncias em ordem crescente:\n{listaDistanciasOrdenadas}")
-print("\n")
-
-print("Problema D:")
-listaIDsMaisVitimas = ids_mais_vitimas(listaRobosEscolhida)
-if listaIDsMaisVitimas is not None:
-    print(f"Robôs que avistaram mais vítimas: {listaIDsMaisVitimas},",
-          f"avistando {total_vitimas_robo(listaRobosEscolhida, listaIDsMaisVitimas[0])} vítimas.")
-else:
-    print("Lista vazia não possui robôs.")
+    print(f"\nQuantidade de robôs: {len(ids)}")
+    print(f"Quantidade de ocorrências: {len(listaRobosEscolhida)}\n")
 
 
-# Mudar esses len == 0 ou lista == [] zoado
+    print("Problema A:")
+    # roboEscolhido = input("Informe um id para calcular distância percorrida: ")
+    # roboEscolhido = "robo0"
+
+    roboEscolhido = 'roboÍcaroCarregadoNoTrabAfkNaBase'
+    distRoboEscolhido = distancia_total_robo(listaRobosEscolhida, roboEscolhido)
+    if distRoboEscolhido is not None:
+        print(f"Distância total de {roboEscolhido}: {distRoboEscolhido}.")
+    else:
+        pass
+    print("\n")
+
+    print("Problema B:")
+    imprime_robos_mais_distantes(listaRobosEscolhida)
+    print("\n")
+
+    print("Problema C:")
+    listaDistanciasOrdenadas = caminhos_robos_crescente(listaRobosEscolhida)
+    print(f"Imprimindo distâncias em ordem crescente:\n{listaDistanciasOrdenadas}")
+    print("\n")
+
+    print("Problema D:")
+    listaIDsMaisVitimas = ids_mais_vitimas(listaRobosEscolhida)
+    if listaIDsMaisVitimas is not None:
+        print(f"Robôs que avistaram mais vítimas: {listaIDsMaisVitimas},",
+            f"avistando {total_vitimas_robo(listaRobosEscolhida, listaIDsMaisVitimas[0])} vítimas.")
+    else:
+        print("Lista vazia não possui robôs.")

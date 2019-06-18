@@ -17,7 +17,7 @@ from problemaB import *
 # - Função para aplicar a função da questão (a) em todos os robôs da lista de entrada - OK
 # - Ordenar essa lista de distâncias - OK
 
-
+# Função principal do problema C
 def caminhos_robos_crescente(listaRobos):
     """ Dada a lista de robôs, imprime o caminho de cada robô (em ordem crescente de distância)
     Escopo: Função global paramétrica
@@ -26,7 +26,7 @@ def caminhos_robos_crescente(listaRobos):
     """
 
     try:
-        if len(listaRobos) == 0:  # ValueError
+        if not listaRobos:  # ValueError
             print("Lista vazia não possui robôs.")
         else:
             listaDistancias = distancias_totais_robos(listaRobos)
@@ -53,9 +53,9 @@ def merge_ordenada(l1, l2):
     [1, 2, 3, 4]
     """
 
-    if len(l1) == 0:
+    if not l1:
         return l2
-    elif len(l2) == 0:
+    elif not l2:
         return l1
     elif l1[0] <= l2[0]:
         return [l1[0]] + merge_ordenada(l1[1:], l2)  # l1[0] é menor ou igual, portanto será primeiro

@@ -13,7 +13,7 @@ def max_lista(lista):
     """
 
     try:
-        if len(lista) == 0:  # ValueError
+        if not lista:  # ValueError
             print("Lista vazia não possui máximo")
         else:  # Reduce para fazer comparações e reduzir lista a um número (o retorno da lambda não é booleano)
             return reduce(lambda a, b: a if (a > b) else b, lista)
@@ -29,7 +29,7 @@ def soma_lista(lista):
     """
 
     try:
-        if len(lista) == 0:  # ValueError
+        if not lista:  # ValueError
             print("Lista vazia não possui valor de soma")
         else:
             return reduce(lambda x, y: x + y, lista)
@@ -113,7 +113,7 @@ def tupla1(tupla2):
     """
 
     try:
-        if len(tupla2) == 0:  # ValueError
+        if not tupla2:  # ValueError
             print("Tupla vazia não possui elementos.")
         else:
             return tupla2[0]
@@ -145,7 +145,7 @@ def ultimo(subscriptable):
     """
 
     try:
-        if len(subscriptable) == 0:  # ValueError
+        if not subscriptable:  # ValueError
             print("Objeto não possui elementos o suficiente.")
         else:
             return subscriptable[-1]

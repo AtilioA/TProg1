@@ -35,7 +35,7 @@ def robos_mais_vitimas(ids, indicesVitimas):
     else:
         return [ids[indicesVitimas[0]]] + robos_mais_vitimas(ids, indicesVitimas[1:])
 
-
+# Função principal do problema D
 def ids_mais_vitimas(listaRobos):
     """ Retorna os ids do robôs que avistaram o maior número de vítimas
     Escopo: Função global paramétrica
@@ -44,7 +44,7 @@ def ids_mais_vitimas(listaRobos):
     """
 
     try:
-        if len(listaRobos) == 0:  # ValueError
+        if not listaRobos:  # ValueError
             print("Lista vazia não possui robôs.")
         else:
             ids = ids_robos(listaRobos)
@@ -100,18 +100,3 @@ def total_vitimas_robos(listaRobos):
     ids = ids_robos(listaRobos)
 
     return list(map(lambda id: total_vitimas_robo(listaRobos, id), ids))
-
-
-def tuplas_robo_id(listaRobos, id):
-    """ Retorna as tuplas de um robô na lista dado seu id
-    Escopo: Função global paramétrica
-    Dados de entrada: Lista com informações sobre todos os robôs
-    Dados de saída: Lista de tuplas de um robô
-    """
-
-    if listaRobos == []:
-        return []
-    elif tupla1(listaRobos[0]) == id:
-        return [listaRobos[0]] + tuplas_robo_id(listaRobos[1:], id)
-    else:
-        return tuplas_robo_id(listaRobos[1:], id)
