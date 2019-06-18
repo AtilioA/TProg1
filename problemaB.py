@@ -82,8 +82,7 @@ def imprime_robos_mais_distantes(listaRobos):
 
 
 def remove_duplicata(lista):
-    """ Cria uma nova lista dada uma lista de entrada
-    sem os elementos duplicados desta
+    """ Cria uma nova lista dada uma lista de entrada sem os elementos duplicados desta
     Escopo: Função global paramétrica
     Dados de entrada: Lista válida
     Dados de saída: Lista sem elementos duplicados
@@ -91,9 +90,9 @@ def remove_duplicata(lista):
 
     if len(lista) < 2:
         return lista
-    elif lista[0] not in lista[1:]:
+    elif lista[0] not in lista[1:]:  # O elemento é único, podemos adicioná-lo na lista final
         return [lista[0]] + remove_duplicata(lista[1:])
-    else:
+    else:  # O elemento não é único, não o adicionamos ainda
         return remove_duplicata(lista[1:])
 
 
@@ -113,7 +112,7 @@ def caminhos_percorridos(listaRobos):
     """ Retorna uma lista com todos os pontos percorridos por todos os robôs
     Escopo: Função global paramétrica
     Dados de entrada: Lista de robôs
-    Dados de saída: Lista de pontos
+    Dados de saída: Lista de lista de pontos
     """
 
     ids = ids_robos(listaRobos)
@@ -167,6 +166,9 @@ def indices_maximos(lista):
     Escopo: Função global paramétrica
     Dados de entrada: Lista numérica
     Dados de saída: Lista numérica de índices
+    Ex: l1 = [1, 13, 5, 13, 5, 0]:
+    maximo = 13
+    returna [1, 3]
     """
 
     maximo = max_lista(lista)
@@ -192,6 +194,7 @@ def robos_mais_distantes(ids, indicesDistancia):
     Dados de entrada: Lista de ids, lista de índices de robôs mais distantes
     Dados de saída: Lista de ids de robôs mais distantes
     """
+
     try:
         if len(indicesDistancia) == 0:  # ValueError
             print("Lista vazia não possui robôs.")

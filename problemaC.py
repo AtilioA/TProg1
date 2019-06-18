@@ -30,8 +30,8 @@ def caminhos_robos_crescente(listaRobos):
             print("Lista vazia não possui robôs.")
         else:
             listaDistancias = distancias_totais_robos(listaRobos)
-
             listaDistanciasOrdenadas = merge_sort(listaDistancias)
+
             return listaDistanciasOrdenadas
     except ValueError:
         pass

@@ -49,7 +49,6 @@ def ids_mais_vitimas(listaRobos):
         else:
             ids = ids_robos(listaRobos)
             indices = indices_mais_vitimas(listaRobos)
-
             idsVitimas = robos_mais_vitimas(ids, indices)
 
             return idsVitimas

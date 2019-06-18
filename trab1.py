@@ -110,3 +110,6 @@ if listaIDsMaisVitimas is not None:
           f"avistando {total_vitimas_robo(listaRobosEscolhida, listaIDsMaisVitimas[0])} vítimas.")
 else:
     print("Lista vazia não possui robôs.")
+
+
+# Mudar esses len == 0 ou lista == [] zoado
