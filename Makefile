@@ -1,4 +1,4 @@
-PYV  := 3.7
+PYV  := 3.6
 MAIN := trab1.py
 CC   := python$(PYV)
 

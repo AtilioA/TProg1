@@ -106,9 +106,9 @@ def pega_vitimas(tuplaRobos):
 
 
 def tupla1(tupla2):
-    """ Retorna o primeiro elemento de uma tupla de 2 elementos
+    """ Retorna o primeiro elemento de uma tupla
     Escopo: função global paramétrica
-    Dados de entrada: tupla de 2 elementos
+    Dados de entrada: tupla não vazia
     Dados de saída: primeiro elemento da tupla
     """
 
@@ -122,9 +122,9 @@ def tupla1(tupla2):
 
 
 def tupla2(tupla2):
-    """ Retorna o segundo (último) elemento de uma tupla de 2 elementos
+    """ Retorna o segundo (último) elemento de uma tupla
     Escopo: função global paramétrica
-    Dados de entrada: tupla de 2 elementos
+    Dados de entrada: tupla de pelo menos 2 elementos
     Dados de saída: segundo (último) elemento da tupla
     """
 
