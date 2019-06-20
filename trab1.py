@@ -68,10 +68,9 @@ for i in range(1, randint(1, 50)):
                                 randint(1, 10)))
 # listaRobosAleatória = []
 
-
-print("\n\n====== TESTES ======\n\n")
-
 if __name__ == "__main__":
+
+    print("\n\n====== TESTES ======\n\n")
 
     system('cls||clear')
 
@@ -86,12 +85,9 @@ if __name__ == "__main__":
     print(f"\nQuantidade de robôs: {len(ids)}")
     print(f"Quantidade de ocorrências: {len(listaRobosEscolhida)}\n")
 
-
     print("Problema A:")
-    # roboEscolhido = input("Informe um id para calcular distância percorrida: ")
-    # roboEscolhido = "robo0"
+    roboEscolhido = input("Informe um id para calcular distância percorrida: ")
 
-    roboEscolhido = 'roboÍcaroCarregadoNoTrabAfkNaBase'
     distRoboEscolhido = distancia_total_robo(listaRobosEscolhida, roboEscolhido)
     if distRoboEscolhido is not None:
         print(f"Distância total de {roboEscolhido}: {distRoboEscolhido}.")
@@ -112,6 +108,6 @@ if __name__ == "__main__":
     listaIDsMaisVitimas = ids_mais_vitimas(listaRobosEscolhida)
     if listaIDsMaisVitimas is not None:
         print(f"Robôs que avistaram mais vítimas: {listaIDsMaisVitimas},",
-            f"avistando {total_vitimas_robo(listaRobosEscolhida, listaIDsMaisVitimas[0])} vítimas.")
+              f"avistando {total_vitimas_robo(listaRobosEscolhida, listaIDsMaisVitimas[0])} vítimas.")
     else:
         print("Lista vazia não possui robôs.")

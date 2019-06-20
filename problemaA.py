@@ -2,9 +2,9 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
-from math import *
+from math import sqrt
 
-from roboAux import *
+from roboAux import tupla1, tupla2, pega_id, pega_local
 
 # ============ QUESTÃO A ============ #
 # a) Calcular a distância percorrida por um determinado robô ao longo do processo de resgate das vítimas.

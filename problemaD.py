@@ -2,9 +2,8 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
-from roboAux import *
-from problemaC import *
-
+from roboAux import pega_vitimas, pega_id, soma_lista
+from problemaB import ids_robos, indices_maximos
 
 # ============ QUESTÃO D ============ #
 # d) Forneça a identidade do(s) robô(s) que conseguiu(ram) informar o maior número de vítimas
@@ -35,6 +34,7 @@ def robos_mais_vitimas(ids, indicesVitimas):
     else:
         return [ids[indicesVitimas[0]]] + robos_mais_vitimas(ids, indicesVitimas[1:])
 
+
 # Função principal do problema D
 def ids_mais_vitimas(listaRobos):
     """ Retorna os ids do robôs que avistaram o maior número de vítimas
@@ -63,7 +63,7 @@ def lista_vitimas_robo(listaRobos, id):
     Dados de saída: Lista com número de vítimas avistadas por um robô em cada ocorrência
     """
 
-    return [pega_vitimas(x) for x in listaRobos if tupla1(x) == id]
+    return [pega_vitimas(x) for x in listaRobos if pega_id(x) == id]
 
 
 def total_vitimas_robo(listaRobos, id):

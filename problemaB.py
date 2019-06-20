@@ -2,6 +2,9 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
+from roboAux import pega_id, ultimo, max_lista, pega_instante
+from problemaA import lista_tuplas_robo_id, pega_pontos_robo, dist_euclid, distancia_total
+
 # ============ QUESTÃO B ============ #
 # b) Determine qual dos robôs apresenta o seu último ponto de passagem no terreno de busca que
 #  possui a maior distância em relação à origem.
@@ -102,7 +105,7 @@ def ids_robos(listaRobos):
     Dados de saída: Lista com ids dos robôs, sem repetição de id
     """
 
-    listaIdsRepetidos = list(map(tupla1, listaRobos))
+    listaIdsRepetidos = list(map(pega_id, listaRobos))
     return remove_duplicata(listaIdsRepetidos)
 
 
@@ -170,7 +173,7 @@ def indices_maximos(lista):
     """
 
     maximo = max_lista(lista)
-    return [x for x, i in enumerate(lista) if i == maximo]
+    return [x for x, i in enumerate(lista) if i == maximo]  # PERGUNTAR
 
 
 def indices_ids_mais_distantes(listaRobos):
@@ -202,6 +205,3 @@ def robos_mais_distantes(ids, indicesDistancia):
             return [ids[indicesDistancia[0]]] + robos_mais_distantes(ids, indicesDistancia[1:])
     except ValueError:
         pass
-
-from problemaA import *
-from problemaC import *

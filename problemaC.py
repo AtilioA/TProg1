@@ -2,7 +2,7 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
-from problemaB import *
+from problemaB import distancias_totais_robos
 
 # ============ QUESTÃO C ============ #
 # c) Exiba os caminhos percorridos por todos os robôs que entraram no terreno de busca,
@@ -16,6 +16,7 @@ from problemaB import *
 # - Função para ordenar lista em ordem crescente - OK
 # - Função para aplicar a função da questão (a) em todos os robôs da lista de entrada - OK
 # - Ordenar essa lista de distâncias - OK
+
 
 # Função principal do problema C
 def caminhos_robos_crescente(listaRobos):
