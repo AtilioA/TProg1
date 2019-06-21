@@ -27,7 +27,7 @@ def dist_euclid(p1, p2):
     Dados de saída: A distância entre os dois pontos
     """
 
-    return round(sqrt((tupla1(p1) - tupla1(p2))**2 + (tupla2(p1) - tupla2(p2))**2), 4)
+    return sqrt((tupla1(p1) - tupla1(p2))**2 + (tupla2(p1) - tupla2(p2))**2)
 
 
 def lista_tuplas_robo_id(listaRobos, id):
@@ -67,12 +67,12 @@ def distancia_total(pontos):
     """
 
     try:
-        if len(pontos) < 2:  # ValueError
+        if len(pontos) < 2:  # IndexError
             print("Robô não existe ou não enviou dados para a CP.")
         elif len(pontos) == 2:
-            return round(dist_euclid(pontos[0], pontos[1]), 2)
+            return dist_euclid(pontos[0], pontos[1])
         else:
-            return round(dist_euclid(pontos[0], pontos[1]), 2) + distancia_total(pontos[1:])
+            return dist_euclid(pontos[0], pontos[1]) + distancia_total(pontos[1:])
     except IndexError:  # Precisamos de ao menos 2 pontos para calcular distância
         pass
 

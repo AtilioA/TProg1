@@ -89,18 +89,18 @@ def pega_local(tuplaRobos):
 
 
 def pega_vitimas(tuplaRobos):
-    """ Retorna o quarto (último) elemento da tupla de um robô,
+    """ Retorna o quarto elemento da tupla de um robô,
     isto é, o número de vítimas avistadas
     Escopo: função global paramétrica
     Dados de entrada: tupla de um robô
-    Dados de saída: quarto (último) elemento da tupla de um robô
+    Dados de saída: quarto elemento da tupla de um robô
     """
 
     try:
         if len(tuplaRobos) != 4:  # ValueError
             print("Tupla de robôs malformada.")
         else:
-            return tuplaRobos[-1]
+            return tuplaRobos[3]
     except ValueError:
         pass
 
@@ -122,26 +122,26 @@ def tupla1(tupla2):
 
 
 def tupla2(tupla2):
-    """ Retorna o segundo (último) elemento de uma tupla
+    """ Retorna o segundo elemento de uma tupla
     Escopo: função global paramétrica
     Dados de entrada: tupla de pelo menos 2 elementos
-    Dados de saída: segundo (último) elemento da tupla
+    Dados de saída: segundo elemento da tupla
     """
 
     try:
         if len(tupla2) < 2:  # ValueError
             print("Tupla não possui elementos o suficiente.")
         else:
-            return tupla2[-1]
+            return tupla2[1]
     except ValueError:
         pass
 
 
 def ultimo(subscriptable):
-    """ Retorna o último elemento de uma lista, tupla, dicionário ou string
+    """ Retorna elemento de uma lista, tupla, dicionário ou string
     Escopo: Função global paramétrica
     Dados de entrada: Lista, tupla, dicionário ou string
-    Dados de saída: Último elemento da estrutura
+    Dados de saídaelemento da estrutura
     """
 
     try:

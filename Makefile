@@ -1,6 +1,6 @@
-PYV  := 3.6
+
 MAIN := trab1.py
-CC   := python$(PYV)
+CC   := python
 
 all:
 	$(CC) ${MAIN}
