@@ -6,8 +6,8 @@
 # Importação de módulos
 # "Ao importar funções de algum módulo, utilize a opção de importação específica"
 from problemaA import distancia_total_robo
-from problemaB import ids_robos, indices_ids_mais_distantes, imprime_robos_mais_distantes
-from problemaC import caminhos_robos_crescente
+from problemaB import ids_robos, indices_ids_mais_distantes, imprime_robos_mais_distantes, distancias_totais_robos, caminhos_percorridos
+from problemaC import caminhos_robos_crescente, tupla_caminhos_percorridos, merge_sort_tupla
 from problemaD import ids_mais_vitimas, total_vitimas_robo
 
 from random import randint  # Para gerar entradas
@@ -23,11 +23,17 @@ from os import system  # Para limpar o terminal
 # Aqui ficarão os testes do programa, inclusive os testes que estarão na versão final
 
 # Entradas
-# Exemplo oficial de entrada
-listaRobos = [
+# Exemplos oficiais de entrada
+listaRobosRealOficial = [
     ('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2), ('robo3', 3, (5, 4), 3),
     ('robo3', 4, (8, 1), 4), ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4),
     ('robo5', 7, (6, 4), 5), ('robo3', 8, (7, 2), 3), ('robo5', 9, (6, 4), 4)
+]
+
+listaRobosRealOficial2 = [
+    ('robo1', 1, (5, 8), 4), ('robo2', 2, (5, 4), 4), ('robo3', 3, (2, 2), 1),
+    ('robo1', 4, (4, 9), 4), ('robo3', 5, (1, 3), 3), ('robo4', 6, (7, 5), 3),
+    ('robo5', 7, (8, 6), 1), ('robo1', 8, (3, 2), 4), ('robo2', 9, (1, 8), 4)
 ]
 
 # Entradas criadas por mim
@@ -39,10 +45,12 @@ listaRobos2 = [
 
 listaRobos3 = [
     ('roboJordana', 1, (1, 1), 3), ('roboMorgana', 2, (-3, -6), 14),
-    ('roboFinalLixoDeGOT', 3, (-6, 0), -10), ('roboCapitãMarvelEmpoderada', 4, (1, 8), 53),
+    ('roboFinalLixoDeGOT', 3, (-6, 0), -
+     10), ('roboCapitãMarvelEmpoderada', 4, (1, 8), 53),
     ('roboLooana', 5, (5, 5), 4), ('roboClebson', 6, (3, 2), 2),
     ('roboTheWitcher3', 7, (19, 5), 2015), ('robo2077', 8, (16, 4), 2020),
-    ('roboÍcaroCarregadoNoTrabAfkNaBase', 9, (0, 0), 0), ('robo2049', 10, (10, 10), 10),
+    ('roboÍcaroCarregadoNoTrabAfkNaBase', 9,
+     (0, 0), 0), ('robo2049', 10, (10, 10), 10),
     ('roboRyanGoslingLiteralDeus', 11, (12, 11), 3), ('roboJordana', 12, (1, 1), 3),
     ('roboCapitãMarvelEmpoderada', 13, (2, 6), 5), ('roboMorgana', 14, (2, 2), 2),
     ('roboRyanGoslingLiteralDeus', 15, (6, 6), 6), ('roboClebson', 16, (1, 5), 7),
@@ -74,10 +82,13 @@ if __name__ == "__main__":
 
     system('cls||clear')
 
-    listaRobosEscolhida = listaRobosAleatória
+    listaRobosEscolhida = listaRobosRealOficial2
 
     ids = ids_robos(listaRobosEscolhida)
+    caminhos = caminhos_percorridos(listaRobosEscolhida)
+    distsTotais = distancias_totais_robos(listaRobosEscolhida)
     indices = indices_ids_mais_distantes(listaRobosEscolhida)
+
 
     print(f"Lista de robôs recebida pela CP:\n{listaRobosEscolhida}")
     print(f"Robôs:\n{ids}")
@@ -86,9 +97,11 @@ if __name__ == "__main__":
     print(f"Quantidade de ocorrências: {len(listaRobosEscolhida)}\n")
 
     print("Problema A:")
-    roboEscolhido = input("Informe um id para calcular distância percorrida: ")
+    # roboEscolhido = input("Informe um id para calcular distância percorrida: ")
+    roboEscolhido = 'robo3'
 
-    distRoboEscolhido = distancia_total_robo(listaRobosEscolhida, roboEscolhido)
+    distRoboEscolhido = distancia_total_robo(
+        listaRobosEscolhida, roboEscolhido)
     if distRoboEscolhido is not None:
         print(f"Distância total de {roboEscolhido}: {distRoboEscolhido}.")
     else:
@@ -101,7 +114,8 @@ if __name__ == "__main__":
 
     print("Problema C:")
     listaDistanciasOrdenadas = caminhos_robos_crescente(listaRobosEscolhida)
-    print(f"Imprimindo distâncias em ordem crescente:\n{listaDistanciasOrdenadas}")
+    print(
+        f"Imprimindo tuplas com distâncias em ordem crescente:\n{listaDistanciasOrdenadas}")
     print("\n")
 
     print("Problema D:")

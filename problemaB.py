@@ -82,6 +82,45 @@ def imprime_robos_mais_distantes(listaRobos):
         pass
 
 
+# Provavelmente terá de ser alterada (ainda não fiz nada aqui)
+def imprime_robos_mais_distantes_2(listaRobos):
+    """ Imprime os robôs que encontram-se mais distantes da origem
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: None
+    """
+
+    try:
+        if not listaRobos:  # ValueError
+            print("Lista vazia não possui robôs.")
+        else:
+            ids = ids_robos(listaRobos)
+            indices = indices_ids_mais_distantes(listaRobos)
+
+            idsMaisDistantes = robos_mais_distantes(ids, indices)
+            if len(idsMaisDistantes) == 1:
+                print("Robô mais distante:")
+            else:
+                print("Robôs mais distantes:")
+            print(idsMaisDistantes)
+
+            if len(idsMaisDistantes) == 1:
+                print("Percurso do robô:")
+            else:
+                print("Percursos dos robôs, respectivamente:")
+            print(list(map(lambda id: pega_pontos_robo(listaRobos, id), idsMaisDistantes)))
+
+            if len(idsMaisDistantes) == 1:
+                print("Tempo total do percurso:")
+            else:
+                print("Tempo total dos percursos, respectivamente:")
+            print(list(map(lambda id: tempo_percurso(listaRobos, id), idsMaisDistantes)))
+
+            return None
+    except TypeError:
+        pass
+
+
 def remove_duplicata(lista):
     """ Cria uma nova lista dada uma lista de entrada sem os elementos duplicados desta
     Escopo: Função global paramétrica

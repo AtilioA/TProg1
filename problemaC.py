@@ -2,7 +2,8 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
-from problemaB import distancias_totais_robos
+from problemaB import ids_robos, caminhos_percorridos, distancias_totais_robos
+from roboAux import tupla2
 
 # ============ QUESTÃO C ============ #
 # c) Exiba os caminhos percorridos por todos os robôs que entraram no terreno de busca,
@@ -14,8 +15,19 @@ from problemaB import distancias_totais_robos
 # PLANEJAMENTO:
 # Criar as seguintes funções:
 # - Função para ordenar lista em ordem crescente - OK
-# - Função para aplicar a função da questão (a) em todos os robôs da lista de entrada - OK
-# - Ordenar essa lista de distâncias - OK
+# - Função para aplicar a função da questão (b) em todos os robôs da lista de entrada - OK
+# - Ordenar essa tupla pelas distâncias - OK
+
+
+def tupla_caminhos_percorridos(listaRobos, ids, distsTotais, caminhos):
+    if not ids:
+        return ids
+    elif not distsTotais:
+        return distsTotais
+    elif not caminhos:
+        return caminhos
+    else:
+        return [(ids[0], distsTotais[0], caminhos[0])] + tupla_caminhos_percorridos(listaRobos, ids[1:], distsTotais[1:], caminhos[1:])
 
 
 # Função principal do problema C
@@ -30,15 +42,19 @@ def caminhos_robos_crescente(listaRobos):
         if not listaRobos:  # ValueError
             print("Lista vazia não possui robôs.")
         else:
-            listaDistancias = distancias_totais_robos(listaRobos)
-            listaDistanciasOrdenadas = merge_sort(listaDistancias)
+            ids = ids_robos(listaRobos)
+            caminhos = caminhos_percorridos(listaRobos)
+            distsTotais = distancias_totais_robos(listaRobos)
 
-            return listaDistanciasOrdenadas
+            tuplasComDistancias = tupla_caminhos_percorridos(listaRobos, ids, distsTotais, caminhos)
+            listaTuplasOrdenadasPorDistancia = merge_sort_tupla(tuplasComDistancias)
+
+            return listaTuplasOrdenadasPorDistancia
     except ValueError:
         pass
 
 
-def merge_ordenada(l1, l2):
+def merge_ordenada_tupla(l1, l2):
     """ Com duas listas ordenadas de entrada, junta as duas de forma ordenada
     Escopo: Função global paramétrica
     Dados de entrada: Duas listas numéricas ordenadas
@@ -58,13 +74,13 @@ def merge_ordenada(l1, l2):
         return l2
     elif not l2:
         return l1
-    elif l1[0] <= l2[0]:
-        return [l1[0]] + merge_ordenada(l1[1:], l2)  # l1[0] é menor ou igual, portanto será primeiro
-    else:
-        return [l2[0]] + merge_ordenada(l1, l2[1:])  # l2[0] é menor, portanto será primeiro
+    elif tupla2(l1[0]) <= tupla2(l2[0]):  # tupla2(l1[0]) é menor ou igual, portanto será primeiro
+        return [l1[0]] + merge_ordenada_tupla(l1[1:], l2)
+    else:  # tupla2(l2[0]) é menor, portanto será primeiro
+        return [l2[0]] + merge_ordenada_tupla(l1, l2[1:])
 
 
-def merge_sort(lista):
+def merge_sort_tupla(lista):
     """ Dada uma lista de entrada, ordena-a por merge_sort
     Escopo: Função global paramétrica
     Dados de entrada: Uma lista numérica
@@ -75,4 +91,4 @@ def merge_sort(lista):
         return lista
     else:
         metade = len(lista) // 2  # Pega o índice do meio da lista
-        return merge_ordenada(merge_sort(lista[:metade]), merge_sort(lista[metade:]))
+        return merge_ordenada_tupla(merge_sort_tupla(lista[:metade]), merge_sort_tupla(lista[metade:]))
