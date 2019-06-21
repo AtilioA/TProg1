@@ -2,8 +2,8 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
-from roboAux import pega_vitimas, pega_id, soma_lista
 from problemaB import ids_robos, indices_maximos
+from roboAux import pega_id, pega_vitimas, soma_lista
 
 # ============ QUESTÃO D ============ #
 # d) Forneça a identidade do(s) robô(s) que conseguiu(ram) informar o maior número de vítimas

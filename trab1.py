@@ -5,13 +5,16 @@
 
 # Importação de módulos
 # "Ao importar funções de algum módulo, utilize a opção de importação específica"
-from problemaA import distancia_total_robo
-from problemaB import ids_robos, indices_ids_mais_distantes, imprime_robos_mais_distantes, distancias_totais_robos, caminhos_percorridos
-from problemaC import caminhos_robos_crescente, tupla_caminhos_percorridos, merge_sort_tupla
-from problemaD import ids_mais_vitimas, total_vitimas_robo
-
-from random import randint  # Para gerar entradas
 from os import system  # Para limpar o terminal
+from random import randint  # Para gerar entradas
+
+from problemaA import distancia_total_robo
+from problemaB import (caminhos_percorridos, distancias_totais_robos,
+                       ids_robos, imprime_robos_mais_distantes,
+                       indices_ids_mais_distantes)
+from problemaC import (caminhos_robos_crescente, merge_sort_tupla,
+                       tupla_caminhos_percorridos)
+from problemaD import ids_mais_vitimas, total_vitimas_robo
 
 # Compreensão do problema e planejamento da solução
 # "Cada função deve ter um comentário com sua descrição, dados de entrada e saída.
@@ -78,10 +81,11 @@ for i in range(1, randint(1, 50)):
 
 if __name__ == "__main__":
 
-    print("\n\n====== TESTES ======\n\n")
+    system('cls||clear')  # Limpa a tela do terminal
 
-    system('cls||clear')
+    print("====== TESTES ======\n")
 
+    # Lista de robôs escolhida para testes
     listaRobosEscolhida = listaRobosRealOficial2
 
     ids = ids_robos(listaRobosEscolhida)
@@ -89,16 +93,15 @@ if __name__ == "__main__":
     distsTotais = distancias_totais_robos(listaRobosEscolhida)
     indices = indices_ids_mais_distantes(listaRobosEscolhida)
 
-
     print(f"Lista de robôs recebida pela CP:\n{listaRobosEscolhida}")
     print(f"Robôs:\n{ids}")
 
     print(f"\nQuantidade de robôs: {len(ids)}")
     print(f"Quantidade de ocorrências: {len(listaRobosEscolhida)}\n")
 
-    print("Problema A:")
-    # roboEscolhido = input("Informe um id para calcular distância percorrida: ")
+    print("- Problema A:")
     roboEscolhido = 'robo3'
+    # roboEscolhido = input("Informe um id para calcular distância percorrida: ")
 
     distRoboEscolhido = distancia_total_robo(
         listaRobosEscolhida, roboEscolhido)
@@ -108,20 +111,22 @@ if __name__ == "__main__":
         pass
     print("\n")
 
-    print("Problema B:")
+    print("- Problema B:")
     imprime_robos_mais_distantes(listaRobosEscolhida)
     print("\n")
 
-    print("Problema C:")
+    print("- Problema C:")
     listaDistanciasOrdenadas = caminhos_robos_crescente(listaRobosEscolhida)
     print(
         f"Imprimindo tuplas com distâncias em ordem crescente:\n{listaDistanciasOrdenadas}")
     print("\n")
 
-    print("Problema D:")
+    print("- Problema D:")
     listaIDsMaisVitimas = ids_mais_vitimas(listaRobosEscolhida)
     if listaIDsMaisVitimas is not None:
         print(f"Robôs que avistaram mais vítimas: {listaIDsMaisVitimas},",
               f"avistando {total_vitimas_robo(listaRobosEscolhida, listaIDsMaisVitimas[0])} vítimas.")
     else:
-        print("Lista vazia não possui robôs.")
+        print("Lista vazia não possui robôs.\n\n")
+
+    print(distancia_total_robo(listaRobosEscolhida, 19259))

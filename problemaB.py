@@ -2,8 +2,9 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
-from roboAux import pega_id, ultimo, max_lista, pega_instante
-from problemaA import lista_tuplas_robo_id, pega_pontos_robo, dist_euclid, distancia_total
+from problemaA import (dist_euclid, distancia_total, lista_tuplas_robo_id,
+                       pega_pontos_robo)
+from roboAux import max_lista, pega_id, pega_instante, ultimo
 
 # ============ QUESTÃO B ============ #
 # b) Determine qual dos robôs apresenta o seu último ponto de passagem no terreno de busca que

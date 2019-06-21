@@ -2,7 +2,7 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
-from problemaB import ids_robos, caminhos_percorridos, distancias_totais_robos
+from problemaB import caminhos_percorridos, distancias_totais_robos, ids_robos
 from roboAux import tupla2
 
 # ============ QUESTÃO C ============ #
@@ -55,19 +55,19 @@ def caminhos_robos_crescente(listaRobos):
 
 
 def merge_ordenada_tupla(l1, l2):
-    """ Com duas listas ordenadas de entrada, junta as duas de forma ordenada
+    """ Com duas listas de tuplas ordenadas conforme o segundo elemento,
+    junta as duas de forma ordenada
     Escopo: Função global paramétrica
-    Dados de entrada: Duas listas numéricas ordenadas
-    Dados de saída: Uma lista ordenada tuplasRoboIdda a partir da junção ordenada das duas de entrada
-    Pega o primeiro elemento que seja o menor dentre as duas listas
-    e junta com o resultado da função chamando com resto da lista "menor"
-    Ex: l1 = [1, 2] e l2 = [3, 4]:
-    merge_ordenada([1, 2], [3, 4])
-    [1] + merge_ordenada([2], [3, 4])
-    [2] + merge_ordenada([], [3, 4])
-    len(l1) == 0, retorna l2
-    [1] + [2] + [3, 4]
-    [1, 2, 3, 4]
+    Dados de entrada: Duas listas de tuplas numéricas ordenadas pelo segundo elemento
+    Dados de saída: Uma lista de tuplas ordenada pelo segundo elemento das tuplas
+    formada a partir da junção ordenada das duas listas de entrada
+
+    Ex: l1 = [(5, 5)] e l2 = [(5, 0)]:
+    merge_ordenada([(5, 5)], [(5, 0)])
+    [(5, 0)] + merge_ordenada([], [(5, 5)])
+    l1 é vazia, retorna l2
+    [(5, 0)] + [(5, 5)]
+    [(5, 0), (5, 5)]
     """
 
     if not l1:
@@ -81,10 +81,11 @@ def merge_ordenada_tupla(l1, l2):
 
 
 def merge_sort_tupla(lista):
-    """ Dada uma lista de entrada, ordena-a por merge_sort
+    """ Dada uma lista de tuplas de entrada, ordena-a por merge sort,
+    tendo como referência para a ordenação os segundos elementos das tuplas
     Escopo: Função global paramétrica
-    Dados de entrada: Uma lista numérica
-    Dados de saída: Uma lista numérica ordenada
+    Dados de entrada: Uma lista de tuplas numéricas
+    Dados de saída: Uma lista de tuplas numéricas ordenadas a partir do segundo elemento
     """
 
     if len(lista) <= 1:

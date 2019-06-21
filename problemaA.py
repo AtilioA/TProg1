@@ -4,7 +4,7 @@
 
 from math import sqrt
 
-from roboAux import tupla1, tupla2, pega_id, pega_local
+from roboAux import pega_id, pega_local, tupla1, tupla2
 
 # ============ QUESTÃO A ============ #
 # a) Calcular a distância percorrida por um determinado robô ao longo do processo de resgate das vítimas.
