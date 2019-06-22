@@ -37,9 +37,8 @@ def lista_tuplas_robo_id(listaRobos, id):
     Dados de saída: Tuplas de informações um único robô da lista de robôs
     """
 
-    # Filtra robôs com id desejado da lista de robôs
-    return list(filter(lambda robo: (pega_id(robo) == id), listaRobos))
-    # return [x for x in listaRobos if tupla1(x) == id]
+    # Forma lista a partir de tuplas que contenham o id de entrada
+    return [x for x in listaRobos if tupla1(x) == id]
 
 
 def pega_pontos_robo(listaRobos, id):

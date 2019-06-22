@@ -128,5 +128,3 @@ if __name__ == "__main__":
               f"avistando {total_vitimas_robo(listaRobosEscolhida, listaIDsMaisVitimas[0])} vítimas.")
     else:
         print("Lista vazia não possui robôs.\n\n")
-
-    print(distancia_total_robo(listaRobosEscolhida, 19259))

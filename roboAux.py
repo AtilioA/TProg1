@@ -12,11 +12,22 @@ def max_lista(lista):
     Dados de saída: Maior elemento da lista
     """
 
+    def maior(a, b):
+        """ Retorna o maior dentre dois números
+        Escopo: Função local paramétrica
+        Dados de entrada: Dois números
+        Dados de saída: O maior número
+        """
+        if a > b:
+            return a
+        else:
+            return b
+
     try:
         if not lista:  # ValueError
             print("Lista vazia não possui máximo")
-        else:  # Reduce para fazer comparações e reduzir lista a um número (o retorno da lambda não é booleano)
-            return reduce(lambda a, b: a if (a > b) else b, lista)
+        else:  # Reduce para fazer comparações e reduzir lista a um número (o retorno de "maior" não é booleano)
+            return reduce(maior, lista)
     except ValueError:
         pass
 
