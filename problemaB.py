@@ -11,12 +11,7 @@ from roboAux import max_lista, pega_id, pega_instante, ultimo
 #  possui a maior distância em relação à origem.
 #  Exiba o caminho percorrido pelo robô e o tempo total do percurso;
 
-# - Extrair, da lista de entrada, o último ponto de passagem de todos os robôs
-# - Determinar qual robô possui ponto mais longe da origem
-# - Imprimir caminho percorrido pelo robô, determinar tempo do percurso
-
-# COMPREENSÃO DO PROBLEMA: deve-se obter o último ponto de passagem de todos os robôs e retornar
-# o robô que possui o último ponto mais distante da origem.
+# COMPREENSÃO DO PROBLEMA: deve-se extrair, da lista de entrada, o último ponto de passagem de todos os robôs. Com isso, determinar qual robô possui ponto mais longe da origem e então imprimir caminho percorrido pelo robô, além de determinar tempo do percurso.
 
 # PLANEJAMENTO:
 # Criar as seguintes funções:
@@ -26,6 +21,76 @@ from roboAux import max_lista, pega_id, pega_instante, ultimo
 # - Função para buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs - OK
 # - Função para determinar tempo de percurso de um robô, dado seu percurso - OK
 # - Função para imprimir percurso de um robô - OK
+
+
+def caminhos_percorridos(listaRobos):
+    """ Retorna uma lista com todos os pontos percorridos por todos os robôs
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista de lista de pontos
+    """
+
+    ids = ids_robos(listaRobos)
+    caminhos = list(map(lambda id: pega_pontos_robo(listaRobos, id), ids))
+    return caminhos
+
+
+def ultimos_pontos_robos(listaRobos):
+    """ Retorna lista com últimos pontos de todos os robôs
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista com últimos pontos de todos os robôs
+    """
+
+    percursos = caminhos_percorridos(listaRobos)
+    return list(map(ultimo, percursos))
+
+
+def dist_origem_ponto(p):
+    """ Calcula a distância da origem até um ponto
+    Escopo: Função global paramétrica
+    Dados de entrada: p ponto real de duas coordenadas
+    Dados de saída: Valor numérico
+    """
+
+    return dist_euclid((0, 0), p)
+
+
+def dist_origem_ultimo_ponto(percursos):
+    """ Calcula a distância da origem até o último ponto de uma lista de tuplas de robôs
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de percursos (lista de pontos) dos robôs
+    Dados de saída: Lista de valores numéricos
+    """
+
+    return list(map(lambda ponto: dist_origem_ponto(ponto), percursos))
+
+
+def indices_maximos(lista):
+    """ Retorna os índices de todas as ocorrências de valor máximo na lista
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista numérica
+    Dados de saída: Lista numérica de índices
+    Ex: l1 = [1, 13, 5, 13, 5, 0]:
+    maximo = 13
+    returna [1, 3]
+    """
+
+    maximo = max_lista(lista)
+    return [x for x, i in enumerate(lista) if i == maximo]  # PERGUNTAR
+
+
+def indices_ids_mais_distantes(listaRobos):
+    """ Retorna os índices dos ids dos robôs mais distantes
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista de índices
+    """
+
+    distsÚltimosPontos = dist_origem_ultimo_ponto(ultimos_pontos_robos(listaRobos))
+    indices = indices_maximos(distsÚltimosPontos)
+
+    return indices
 
 
 def tempo_percurso(listaRobos, id):
@@ -147,86 +212,6 @@ def ids_robos(listaRobos):
 
     listaIdsRepetidos = list(map(pega_id, listaRobos))
     return remove_duplicata(listaIdsRepetidos)
-
-
-def caminhos_percorridos(listaRobos):
-    """ Retorna uma lista com todos os pontos percorridos por todos os robôs
-    Escopo: Função global paramétrica
-    Dados de entrada: Lista de robôs
-    Dados de saída: Lista de lista de pontos
-    """
-
-    ids = ids_robos(listaRobos)
-    caminhos = list(map(lambda id: pega_pontos_robo(listaRobos, id), ids))
-    return caminhos
-
-
-def ultimos_pontos_robos(listaRobos):
-    """ Retorna lista com últimos pontos de todos os robôs
-    Escopo: Função global paramétrica
-    Dados de entrada: Lista de robôs
-    Dados de saída: Lista com últimos pontos de todos os robôs
-    """
-
-    percursos = caminhos_percorridos(listaRobos)
-    return list(map(ultimo, percursos))
-
-
-def distancias_totais_robos(listaRobos):
-    """ Calcula as distâncias totais que todos os robôs percorreram
-    Escopo: Função global paramétrica
-    Dados de entrada: Lista de robôs
-    Dados de saída: Lista de
-    """
-
-    return list(map(distancia_total, caminhos_percorridos(listaRobos)))
-
-
-def dist_origem_ponto(p):
-    """ Calcula a distância da origem até um ponto
-    Escopo: Função global paramétrica
-    Dados de entrada: p ponto real de duas coordenadas
-    Dados de saída: Valor numérico
-    """
-
-    return dist_euclid((0, 0), p)
-
-
-def dist_origem_ultimo_ponto(percursos):
-    """ Calcula a distância da origem até o último ponto de uma lista de tuplas de robôs
-    Escopo: Função global paramétrica
-    Dados de entrada: Lista de percursos (lista de pontos) dos robôs
-    Dados de saída: Lista de valores numéricos
-    """
-
-    return list(map(lambda ponto: dist_origem_ponto(ponto), percursos))
-
-
-def indices_maximos(lista):
-    """ Retorna os índices de todas as ocorrências de valor máximo na lista
-    Escopo: Função global paramétrica
-    Dados de entrada: Lista numérica
-    Dados de saída: Lista numérica de índices
-    Ex: l1 = [1, 13, 5, 13, 5, 0]:
-    maximo = 13
-    returna [1, 3]
-    """
-
-    maximo = max_lista(lista)
-    return [x for x, i in enumerate(lista) if i == maximo]  # PERGUNTAR
-
-
-def indices_ids_mais_distantes(listaRobos):
-    """ Retorna os índices dos ids dos robôs mais distantes
-    Escopo: Função global paramétrica
-    Dados de entrada: Lista de robôs
-    Dados de saída: Lista de índices
-    """
-
-    distsÚltimosPontos = dist_origem_ultimo_ponto(ultimos_pontos_robos(listaRobos))
-    indices = indices_maximos(distsÚltimosPontos)
-
-    return indices
 
 
 def robos_mais_distantes(ids, indicesDistancia):

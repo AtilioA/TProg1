@@ -10,13 +10,13 @@ from roboAux import tupla2
 # ordenados crescentemente pela distância total percorrida;
 
 # COMPREENSÃO DO PROBLEMA: deve-se calcular as distâncias percorridas por todos os robôs, adicionando-as
-# em uma lista que será ordenada, imprimida na tela e então retornada
+# em uma tupla que será ordenada a partir das distâncias, impressa na tela e então retornada
 
 # PLANEJAMENTO:
 # Criar as seguintes funções:
-# - Função para ordenar lista em ordem crescente - OK
-# - Função para aplicar a função da questão (b) em todos os robôs da lista de entrada - OK
-# - Ordenar essa tupla pelas distâncias - OK
+# - Função para ordenar lista em ordem crescente
+# - Função para juntar id, distância total e caminho percorrido de todos os robôs em uma lista de  tuplas
+# - Ordenar essa lista pelas distâncias nas tuplas
 
 
 def tupla_caminhos_percorridos(listaRobos, ids, distsTotais, caminhos):
@@ -28,30 +28,6 @@ def tupla_caminhos_percorridos(listaRobos, ids, distsTotais, caminhos):
         return caminhos
     else:
         return [(ids[0], distsTotais[0], caminhos[0])] + tupla_caminhos_percorridos(listaRobos, ids[1:], distsTotais[1:], caminhos[1:])
-
-
-# Função principal do problema C
-def caminhos_robos_crescente(listaRobos):
-    """ Dada a lista de robôs, imprime o caminho de cada robô (em ordem crescente de distância)
-    Escopo: Função global paramétrica
-    Dados de entrada: A lista de dados sobre os robôs
-    Dados de saída: Uma lista de distâncias ordenada
-    """
-
-    try:
-        if not listaRobos:  # ValueError
-            print("Lista vazia não possui robôs.")
-        else:
-            ids = ids_robos(listaRobos)
-            caminhos = caminhos_percorridos(listaRobos)
-            distsTotais = distancias_totais_robos(listaRobos)
-
-            tuplasComDistancias = tupla_caminhos_percorridos(listaRobos, ids, distsTotais, caminhos)
-            listaTuplasOrdenadasPorDistancia = merge_sort_tupla(tuplasComDistancias)
-
-            return listaTuplasOrdenadasPorDistancia
-    except ValueError:
-        pass
 
 
 def merge_ordenada_tupla(l1, l2):
@@ -93,3 +69,37 @@ def merge_sort_tupla(lista):
     else:
         metade = len(lista) // 2  # Pega o índice do meio da lista
         return merge_ordenada_tupla(merge_sort_tupla(lista[:metade]), merge_sort_tupla(lista[metade:]))
+
+
+def distancias_totais_robos(listaRobos):
+    """ Calcula as distâncias totais que todos os robôs percorreram
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs
+    Dados de saída: Lista de
+    """
+
+    return list(map(distancia_total, caminhos_percorridos(listaRobos)))
+
+
+# Função principal do problema C
+def caminhos_robos_crescente(listaRobos):
+    """ Dada a lista de robôs, imprime o caminho de cada robô (em ordem crescente de distância)
+    Escopo: Função global paramétrica
+    Dados de entrada: A lista de dados sobre os robôs
+    Dados de saída: Uma lista de distâncias ordenada
+    """
+
+    try:
+        if not listaRobos:  # ValueError
+            print("Lista vazia não possui robôs.")
+        else:
+            ids = ids_robos(listaRobos)
+            caminhos = caminhos_percorridos(listaRobos)
+            distsTotais = distancias_totais_robos(listaRobos)
+
+            tuplasComDistancias = tupla_caminhos_percorridos(listaRobos, ids, distsTotais, caminhos)
+            listaTuplasOrdenadasPorDistancia = merge_sort_tupla(tuplasComDistancias)
+
+            return listaTuplasOrdenadasPorDistancia
+    except ValueError:
+        pass
