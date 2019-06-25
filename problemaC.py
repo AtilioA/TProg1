@@ -2,7 +2,8 @@
 # Autores: Atílio Antônio Dadalto
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
-from problemaB import caminhos_percorridos, distancias_totais_robos, ids_robos
+from problemaA import distancia_total
+from problemaB import caminhos_percorridos, ids_robos
 from roboAux import tupla2
 
 # ============ QUESTÃO C ============ #

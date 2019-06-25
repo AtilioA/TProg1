@@ -9,11 +9,11 @@ from os import system  # Para limpar o terminal
 from random import randint  # Para gerar entradas
 
 from problemaA import distancia_total_robo
-from problemaB import (caminhos_percorridos, distancias_totais_robos,
-                       ids_robos, imprime_robos_mais_distantes,
+from problemaB import (caminhos_percorridos, ids_robos,
+                       imprime_robos_mais_distantes,
                        indices_ids_mais_distantes)
 from problemaC import (caminhos_robos_crescente, merge_sort_tupla,
-                       tupla_caminhos_percorridos)
+                       tupla_caminhos_percorridos, distancias_totais_robos)
 from problemaD import ids_mais_vitimas, total_vitimas_robo
 
 # Compreensão do problema e planejamento da solução
@@ -81,7 +81,7 @@ for i in range(1, randint(1, 50)):
 
 if __name__ == "__main__":
 
-    system('cls||clear')  # Limpa a tela do terminal
+    # system('cls||clear')  # Limpa a tela do terminal
 
     print("====== TESTES ======\n")
 

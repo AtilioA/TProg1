@@ -1,15 +1,15 @@
 
-MAIN := trab1.py
-CC   := python
+# MAIN := trab1.py
+# CC   := python
 
-all:
-	$(CC) ${MAIN}
+# all:
+# 	$(CC) ${MAIN}
 
-int:
-	$(CC) -i ${MAIN}
+# int:
+# 	$(CC) -i ${MAIN}
 
-time:
-	time $(CC) ${MAIN}
+# time:
+# 	time $(CC) ${MAIN}
 
 clean:
 	rm -r __pycache__

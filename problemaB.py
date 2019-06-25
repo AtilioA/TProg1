@@ -77,7 +77,7 @@ def indices_maximos(lista):
     """
 
     maximo = max_lista(lista)
-    return [x for x, i in enumerate(lista) if i == maximo]  # PERGUNTAR
+    return [x for x, i in enumerate(lista) if i == maximo]
 
 
 def indices_ids_mais_distantes(listaRobos):
