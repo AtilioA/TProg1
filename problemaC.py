@@ -28,7 +28,8 @@ def tupla_caminhos_percorridos(listaRobos, ids, distsTotais, caminhos):
     elif not caminhos:
         return caminhos
     else:
-        return [(ids[0], distsTotais[0], caminhos[0])] + tupla_caminhos_percorridos(listaRobos, ids[1:], distsTotais[1:], caminhos[1:])
+        return [(ids[0], distsTotais[0], caminhos[0])]
+        + tupla_caminhos_percorridos(listaRobos, ids[1:], distsTotais[1:], caminhos[1:])
 
 
 def merge_ordenada_tupla(l1, l2):

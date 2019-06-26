@@ -11,7 +11,9 @@ from roboAux import max_lista, pega_id, pega_instante, ultimo
 #  possui a maior distância em relação à origem.
 #  Exiba o caminho percorrido pelo robô e o tempo total do percurso;
 
-# COMPREENSÃO DO PROBLEMA: deve-se extrair, da lista de entrada, o último ponto de passagem de todos os robôs. Com isso, determinar qual robô possui ponto mais longe da origem e então imprimir caminho percorrido pelo robô, além de determinar tempo do percurso.
+# COMPREENSÃO DO PROBLEMA: deve-se extrair, da lista de entrada, o último ponto de passagem de todos os robôs.
+# Com isso, determinar qual robô possui ponto mais longe da origem e então imprimir caminho
+# percorrido pelo robô, além de determinar tempo do percurso.
 
 # PLANEJAMENTO:
 # Criar as seguintes funções:
@@ -73,7 +75,7 @@ def indices_maximos(lista):
     Dados de saída: Lista numérica de índices
     Ex: l1 = [1, 13, 5, 13, 5, 0]:
     maximo = 13
-    returna [1, 3]
+    return [1, 3]
     """
 
     maximo = max_lista(lista)
@@ -94,7 +96,7 @@ def indices_ids_mais_distantes(listaRobos):
 
 
 def tempo_percurso(listaRobos, id):
-    """ Calcula o tempo de percurso de um robô até o momento de sua última ocorrência
+    """ Retorna o instante da última ocorrência de um robô
     Escopo: Função global paramétrica
     Dados de entrada: Lista de robôs e id de robô na lista
     Dados de saída: Valor numérico do tempo de percurso de um robô
