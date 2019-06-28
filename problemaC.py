@@ -13,12 +13,6 @@ from roboAux import tupla2
 # COMPREENSÃO DO PROBLEMA: deve-se calcular as distâncias percorridas por todos os robôs, adicionando-as
 # em uma tupla que será ordenada a partir das distâncias, impressa na tela e então retornada
 
-# PLANEJAMENTO:
-# Criar as seguintes funções:
-# - Função para ordenar lista em ordem crescente
-# - Função para juntar id, distância total e caminho percorrido de todos os robôs em uma lista de  tuplas
-# - Ordenar essa lista pelas distâncias nas tuplas
-
 
 def tupla_caminhos_percorridos(listaRobos, ids, distsTotais, caminhos):
     if not ids:

@@ -14,11 +14,6 @@ from roboAux import pega_id, pega_local, tupla1, tupla2
 # COMPREENSÃO DO PROBLEMA: deve-se extrair a tupla de um robô da lista de entrada de acordo com o id dado.
 # Em seguida, calcular a distância total que ele percorreu (partindo da origem) e retornar esse valor.
 
-# PLANEJAMENTO:
-# Criar as seguintes funções:
-# - Função para cálculo de distância no plano cartesiano - OK
-# -
-
 
 def dist_euclid(p1, p2):
     """ Calcula a distância entre dois pontos cartesianos

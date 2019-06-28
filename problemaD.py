@@ -13,14 +13,6 @@ from roboAux import pega_id, pega_vitimas, soma_lista
 # e identificar o robô que avistou o maior número.
 # Retornar mais de um robô caso o maior número seja repetido.
 
-# PLANEJAMENTO:
-# Criar as seguintes funções:
-# - Função para extrair número de vítimas vistas em cada ponto passado por um robô - OK
-# - Função para somar elementos de uma lista - OK
-# - Aplicar essas duas últimas funções para todos os robôs da lista de entrada - OK
-# - Extrair maior número da lista obtida no último item - OK
-# - Buscar na lista original os robôs que obtiveram o número obtido no último item e retornar os IDs - OK
-
 
 def lista_vitimas_robo(listaRobos, id):
     """ Retorna a lista de vítimas avistadas por um robô dado o id deste
