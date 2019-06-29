@@ -1,5 +1,5 @@
 # Módulo com funções para solucionar o problema D
-# Autores: Atílio Antônio Dadalto
+# Autores: Atílio Antônio Dadalto e Ícaro Madalena do Nascimento
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
 from problemaB import ids_robos, indices_maximos

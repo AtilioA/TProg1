@@ -1,5 +1,5 @@
 # Módulo com funções para solucionar o problema B
-# Autores: Atílio Antônio Dadalto
+# Autores: Atílio Antônio Dadalto e Ícaro Madalena do Nascimento
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
 from problemaA import (dist_euclid, distancia_total, lista_tuplas_robo_id,

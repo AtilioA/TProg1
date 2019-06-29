@@ -1,5 +1,5 @@
 # Módulo com funções para solucionar o problema A
-# Autores: Atílio Antônio Dadalto
+# Autores: Atílio Antônio Dadalto e Ícaro Madalena do Nascimento
 # Disciplina: Programação I, ministrada por Jordana Sarmenghi Salamon em 2019/1
 
 from math import sqrt
@@ -11,8 +11,9 @@ from roboAux import pega_id, pega_local, tupla1, tupla2
 # Considere que a distância total percorrida deve ser calculada como a soma de todas as distâncias entre os
 # pontos de passagem do robô;
 
-# COMPREENSÃO DO PROBLEMA: deve-se extrair a tupla de um robô da lista de entrada de acordo com o id dado.
-# Em seguida, calcular a distância total que ele percorreu (partindo da origem) e retornar esse valor.
+# COMPREENSÃO DO PROBLEMA: deve-se extrair a tupla de um robô da lista de entrada,
+# de acordo com o identificador dado.
+# Em seguida, calcular a distância total que o robô percorreu e retornar esse valor.
 
 
 def dist_euclid(p1, p2):
