@@ -17,13 +17,14 @@
 \usepackage[scaled]{helvet}
 \usepackage{fancyhdr}
 \usepackage{lmodern}
+\usepackage{indentfirst}
 
 %%% Definição de variáveis. %%%
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
 \titulo{Auxílio ao resgate de vítimas por robôs em ambientes acidentados}
-\autor{Atílio Antônio Dadalto \\ Ícaro Nascimento Recayd Mob}
+\autor{Atílio Antônio Dadalto \\ Ícaro Madalena do Nascimento}
 \local{Vitória}
 \data{2019}
 \instituicao{%
@@ -42,6 +43,26 @@
 \newcommand{\java}{Java\texttrademark\xspace}
 \newcommand{\latex}{\LaTeX\xspace}
 
+\newfontfamily{\consolas}{Consolas.ttf}
+
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+
+\lstset{
+  language=C,
+  basicstyle=\footnotesize\consolas,
+%   numbers=left,
+%   numberstyle=\tiny,
+  frame=tb,
+  tabsize=4,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  columns=fixed,
+  showstringspaces=false,
+  showtabs=false,
+  keepspaces,
+  commentstyle=\color{gray},
+  keywordstyle=\color{blue}
+}
 
 %%% Configurações finais de aparência. %%%
 
@@ -101,7 +122,6 @@
 \input{cap1.tex}
 \input{cap2.tex}
 \input{cap3.tex}
-\input{cap4.tex}
 \input{apendiceA.tex}
 
 % Finaliza a parte no bookmark do PDF para que se inicie o bookmark na raiz e adiciona espaço de parte no sumário.
@@ -109,10 +129,6 @@
 
 % Marca o fim dos elementos textuais.
 \postextual
-
-% Referências bibliográficas
-\clearpage
-\bibliography{bibliografia}
 
 % Fim do documento.
 \end{document}

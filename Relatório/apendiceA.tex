@@ -1,7 +1,245 @@
-\begin{apendicesenv}\label{apendiceA} % Vou ver com a Jordana se apêndice pro plano de testes está ok
+\begin{apendicesenv}
 
-\chapter{Planos de testes}
+\chapter{Planos de testes}\label{apendiceA}
 
-Este apêndice serve como repositório para os planos testes das funções implementadas projeto.
+Este apêndice serve como repositório para os planos testes das funções mais importantes implementadas no projeto. Algumas funções assumem certos valores de entrada, de forma a afunilar as possíveis entradas, dado que os valores a serem recebidos podem variar enormemente e que o projeto conta com muitas funções; no entanto, nos contemos a assumir entradas de maneira muito razoável, e, além disso, todos os casos básicos foram tratados devidamente dentro das funções.
+
+
+Para melhor exemplificação e legibilidade dos testes das funções abaixo, usaremos a lista de dados de entrada ilustrada a seguir:
+
+\begin{lstlisting}
+listaRobos = [
+    ('robo3', 1, (7, 7), 3), ('robo4', 2, (7, 5), 2),
+    ('robo3', 3, (5, 4), 3), ('robo3', 4, (8, 1), 4),
+    ('robo4', 5, (4, 5), 3), ('robo5', 6, (7, 7), 4)
+]
+\end{lstlisting}
+
+\section{\texttt{distancia\_total()}}
+A função calcula a distância total entre uma lista de pontos somando a distância entre um ponto e o próximo até o fim da lista.
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \cline{1-2}
+        lista & resultado esperado \\ \hline
+        [] & None \\ \hline  
+        lista com um ponto & None \\ \hline  
+        [p1, p2, p3] & distância de p1 até p2 + distância de p2 até p3 \\ \hline
+    \end{tabular}
+\end{center}
+
+Definindo entradas:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \cline{1-3}
+        lista & resultado esperado & resultado obtido  \\ \hline
+        [] & None & None \\ \hline
+        [(4,4)] & None & None \\ \hline
+        [(0,0),(3,4),(5,6)] & 7.82842712474619 & 7.82842712474619 \\ \hline
+
+    \end{tabular}
+\end{center}
+
+\section{\texttt{distancia\_total\_robo()}}
+A função calcula a distância total percorrida por um robô, ou seja, a soma das distâncias de todos os pontos percorridos por ele.
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \cline{1-2}
+        lista & resultado esperado \\ \hline
+        [] & None \\ \hline  
+        [(a,(p1)),(a,(p2))], 'a' & distância de (0,0) até p1 + distância de p1 até p2 \\ \hline
+    \end{tabular}
+\end{center}
+
+
+Definindo entradas:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \cline{1-3}
+        lista & resultado esperado & resultado obtido  \\ \hline
+        [] & None & None \\ \hline
+        [('robo1',2,(4,4),5)], 'robo2' & None & None \\ \hline
+        listaRobos, 'robo3' & 17.74768689919494 & 17.74768689919494 \\ \hline
+
+    \end{tabular}
+\end{center} 
+
+
+\section{\texttt{indices\_maximos()}}
+A função recebe uma lista numérica e retorna uma lista com os índices de todas as ocorrências do valor máximo na lista.
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \cline{1-2}
+        lista & resultado esperado \\ \hline
+        [] & [] \\ \hline  
+        [a, b, c, d] & índices das ocorrências do maior elemento da lista  \\ \hline
+    \end{tabular}
+\end{center}
+
+Definindo entradas:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \cline{1-3}
+        lista & resultado esperado & resultado obtido  \\ \hline
+        [] & [] & [] \\ \hline
+        [5] & [0] & [0] \\ \hline
+        [1,2,3,10,1,10] & [3,5] & [3,5] \\ \hline
+
+    \end{tabular}
+\end{center} 
+
+
+\section{\texttt{imprime\_robos\_mais\_distantes()}}
+A função recebe uma lista de robôs e imprime os robôs que encontram-se mais distantes da origem, seus percursos e tempos de percurso
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \cline{1-2}
+        lista & resultado esperado \\ \hline
+        [] & None \\ \hline  
+        [('b',(10,10),1)] & ['b'],[(0,0),(10,10)],[1] \\ \hline
+        [('a',(5,4),1),('b',(10,10),1)] & ['b'],[(0,0),(10,10)],[1]  \\ \hline
+    \end{tabular}
+\end{center}
+
+Definindo entradas:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \cline{1-3}
+        lista & resultado esperado & resultado obtido  \\ \hline
+        [] & None & None \\ \hline
+        [('robo',1,(10,10),3)] & [('robo',((0,0),(10,10)),1] & [('robo',((0,0),(10,10)),1] \\ \hline
+        [('robo',1,(10,10),3),('robo2',1,(2,1),3)] & [('robo',((0,0),(10,10)),3] & [('robo',((0,0),(10,10)),3]  \\ \hline
+
+    \end{tabular}
+\end{center}
+
+
+
+
+\section{\texttt{caminhos\_robos\_crescente()}}
+A função retorna uma lista de tuplas para cada robô, ordenadas em ordem crescente pela distância total percorrida pelos robôs.
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \cline{1-2}
+        Entradas & resultado esperado \\ \hline
+        [] &  None\\ \hline
+        [(a),(b)] & soma do caminho percorrido a, soma do caminho b  \\ \hline
+    \end{tabular}
+\end{center}
+
+
+Definindo entradas (saídas arredondadas para melhor visualização):
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \cline{1-2}
+        lista & resultado esperado \\ \hline
+        [] & None \\ \hline
+        [('robo1',2,(4,4),5)] & [('robo1', 5.6, [(0, 0), (4, 4)])] \\ \hline
+        [('robo1',2,(4,4),5),('robo3',7,(5,5),2)] & [('robo1', 5.6, [(0, 0), (4, 4)]), ('robo3', 7, [(0, 0), (5, 5)])] \\ \hline
+    \end{tabular}
+\end{center} 
+
+\begin{center}
+    \begin{tabular}{|c|}
+        \cline{1-1}
+        resultado obtido \\ \hline
+        None \\ \hline
+        [('robo1', 5.6, [(0, 0), (4, 4)])] \\ \hline
+        [('robo1', 5.6, [(0, 0), (4, 4)]), ('robo3', 7, [(0, 0), (5, 5)])] \\ \hline
+    \end{tabular}
+\end{center}
+
+
+
+\section{\texttt{merge\_ordenada\_tupla()}}
+Dadas duas listas ordenadas pelo segundo elemento da tupla, junta-as de forma ordenada.
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \cline{1-2}
+        lista & resultado esperado \\ \hline
+        [] & [] \\ \hline
+        [],[(a,b)] & [(a,b)] \\ \hline
+        [(c,d)],[] & [(c,d)] \\ \hline
+        [(a,b)],[(c,d)]  & [(a,b),(c,d)] \\ \hline
+        [(a,b),(c,d)],[(b,c),(d,e)] & [(a,b),(b,c)(c,d),(d,e)] \\ \hline
+    \end{tabular}
+\end{center}
+
+Definindo entradas:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \cline{1-3}
+        lista & resultado esperado & resultado obtido  \\ \hline
+        [],[] & [] & []\\ \hline
+        [(1,2)],[(3,4)] & [(1,2),(3,4)] & [(1,2),(3,4)] \\ \hline
+        [(1,2),(3,4)],[(5,6),(7,8)] & [(1,2),(3,4),(5,6),(7,8)] & [(1,2),(3,4)],[(5,6),(7,8)] \\ \hline
+    \end{tabular}
+\end{center}
+
+
+\section{\texttt{merge\_sort\_tupla()}}
+Ordena uma lista de tuplas através do método \textit{merge sort}, tendo como referência o segundo elemento das tuplas.
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \cline{1-2}
+        lista & resultado esperado \\ \hline
+        [] & [] \\ \hline
+        [(a)]  & [(a)] \\ \hline
+        [(a,d),(c,b),(b,f)] & [(c,b),(a,d),(b,f)]  \\ \hline
+    \end{tabular}
+\end{center}
+
+
+Definindo entradas:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \cline{1-3}
+        lista & resultado esperado & resultado obtido  \\ \hline
+        [] & [] & [] \\ \hline
+        [(1,2)] & [(1,2)] & [(1,2)] \\ \hline
+        [(1,4),(2,3)] & [(2,3),(1,4)] & [(2,3),(1,4)] \\ \hline
+
+    \end{tabular}
+\end{center}
+
+
+\section{\texttt{ids\_mais\_vitimas()}}
+ A função retorna o(s) id(s) do(s) robô(s) que avistaram o maior número de vítimas.
+ 
+ \begin{center}
+    \begin{tabular}{|c|c|}
+        \cline{1-2}
+        lista & resultado esperado \\ \hline
+        [] & None \\ \hline
+        um robô  & o id do único robô \\ \hline
+        mais de um robô, um robô com mais vítimas avistadas & id do robô com mais vítimas  \\ \hline
+        mais de um robô, mais de um robô com mais vítimas & ids dos robôs com mais vítimas \\ \hline
+    \end{tabular}
+\end{center}
+
+Definindo entradas:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \cline{1-3}
+        lista & resultado esperado & resultado obtido  \\ \hline
+        [] & None & None \\ \hline
+        [('robo1',1,(1,1),2)] & ['robo1'] & ['robo1'] \\ \hline
+        [('robo1',1,(1,1),2),('robo2',5,(3,2),5)] & ['robo2'] & ['robo2'] \\ \hline
+        [('robo1',1,(1,1),2),('robo2',5,(3,2),2)] & ['robo1', 'robo2'] & ['robo1', 'robo2'] \\ \hline
+    \end{tabular}
+\end{center} 
 
 \end{apendicesenv}

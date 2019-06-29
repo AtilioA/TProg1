@@ -1,5 +1,9 @@
 \chapter{Planejamento e implementação}\label{cap-planejamento-implementacao}
 
+O planejamento das soluções foi feito tendo em mente o objetivo final de um problema. As soluções foram subsequentemente divididas em passos cada vez menores e mais discretizados, possibilitando a abordagem de dividir para conquistar.
+
+A implementação, por sua vez, conta com vários usos de expressões lambda e também da função \texttt{map}. O paradigma recursivo foi usado em situações que julgou-se mais simples ou intuitivo sua implementação, como por exemplo na ordenação ou na remoção de elementos duplicados em uma lista (mais sobre isso nas Seções~\ref{problemaB} e \ref{problemaC}). Para maior entendimento das soluções, é claro, é necessário visualizar os códigos, que aqui foram omitidos. Todo o projeto busca seguir as convenções da PEP-8. 
+
 \section{Problema A}\label{problemaA}
 \begin{enumerate}[label=\textbf{\alph*)},series=problemas]
 \item Calcular a distância percorrida por um determinado robô ao longo do processo de resgate das vítimas. Considere que a distância total percorrida deve ser calculada como a soma de todas as distâncias entre os pontos de passagem do robô.
@@ -9,23 +13,93 @@
 
 Sendo assim, podemos criar as seguintes funções para solucionar o problema:
 \begin{enumerate}
-    \item Função para somar todos os elementos de uma lista
     \item Função para cálculo de distância no plano cartesiano
-    \item Função para extrair uma tupla de uma lista dado um elemento identificador da tupla
-    \item Função para calcular a distância entre os pontos percorridos pelo robô, por ordem de instante\label{itemDistInstante}
-    \item Função para ordenar lista por instante (talvez não precise disso, precisamos ver o exemplo de entrada)
+    \item Função para extrair todas as tuplas de um mesmo robô da lista
+    \item Função para extrair todos os pontos percorridos por um mesmo robô 
+    \item Função para calcular a distância total de uma lista de pontos
 \end{enumerate}
 
-As duas primeiras são triviais e foram implementadas diversas vezes durante o curso. Na terceira, utilizamos [...] para retornar a tupla que desejávamos. Para o item \ref{itemDistInstante}, [...].
+A primeira, \texttt{dist\_euclid}, é trivial e foi implementada diversas vezes durante o curso;
+
+Na segunda, \texttt{lista\_tuplas\_robo\_id}, foi utilizada compreensão de lista com condicional para formar uma lista de tuplas;
+
+Na terceira, \texttt{pega\_pontos\_robo}, foi aplicada, a todos os elementos da lista de robôs, a função que retorna o local do robô dada uma tupla de robô, por meio da função \texttt{map}. A partir daí, adiciona-se a origem à lista de pontos percorridos, pois todos os robôs partem da origem.
+
+Por fim, a quarta, \texttt{distancia\_total}, é utilizada a recursão para calcular a distância de um ponto até outro, partindo do primeiro ponto, dada uma lista de pontos como entrada.
+
+Com essas quatro funções, temos o suficiente para solucionar o Problema A; a função que propriamente resolve essa questão é a \texttt{distancia\_total\_robo}, ao extrair todos os pontos de um robô dado seu id e a lista de robôs e calcular a distância do primeiro ponto até o último, passando por todos os pontos no meio.
+
 
 \section{Problema B}\label{problemaB}
 \begin{enumerate}[label=\textbf{\alph*)},resume*=problemas]
 \item Determine qual dos robôs apresenta o seu último ponto de passagem no terreno de busca que possui a maior distância em relação à origem. Exiba o caminho percorrido pelo robô e o tempo total do percurso;
 \end{enumerate}
 
+\noindent \textbf{COMPREENSÃO DO PROBLEMA E PLANEJAMENTO}: deve-se extrair, da lista de entrada, o último ponto de passagem de todos os robôs. Com isso, determinar qual robô possui ponto mais longe da origem e então imprimir caminho percorrido pelo robô, além de determinar tempo do percurso.
 
-% # - Extrair, da lista de entrada, o último ponto de passagem de todos os robôs
-% # - Determinar qual robô possui ponto mais longe da origem
-% # - Imprimir caminho percorrido pelo robô, determinar tempo do percurso
+Sendo assim, podemos criar as seguintes funções para solucionar o problema:
+\begin{enumerate}
+    \item Função para obter uma lista com os últimos pontos de todos os robôs da lista de entrada 
+    \item Função para calcular a distância da origem a todos esses pontos, retornando uma lista 
+    \item Função para buscar os robôs que obtiveram a maior distância
+    \item Função para determinar tempo de percurso de um robô
+\end{enumerate}
 
-\section{}
+A primeira função, \texttt{ultimos\_pontos\_robos}, é muito simples, bastando aplicar a função \texttt{map} com uma função que retorne o último elemento de uma lista e a lista de tuplas de robôs.
+
+A segunda, \texttt{dist\_origem\_ultimo\_ponto}, também é simples e utiliza a função de cálculo de distância da origem até um ponto com todos os pontos obtidos pela primeira função, por meio da função \texttt{map}.
+
+A terceira, \texttt{indices\_ids\_mais\_distantes}, após calcular as distâncias até os últimos pontos de todos os robôs, calcula os índices dos robôs que tiveram maior distância (caso exista mais de um). Esses índices podem ser utilizados para acessar a lista de ids que a função \texttt{ids\_robos} retorna, função essa que retorna uma lista com todos os ids dos robôs, sem repetição.
+
+Finalmente, a quarta, \texttt{tempo\_percurso}, simplesmente retorna o instante da última ocorrência de um robô, já que isso representa o tempo total de percurso atual de um robô.
+
+Sendo assim, teremos os ids dos robôs mais distantes, os percursos destes --- através da função \texttt{pega\_pontos\_robo} do Problema A com os ids supracitados --- e o tempo de percurso.
+
+
+\section{Problema C}\label{problemaC}
+
+\begin{enumerate}[label=\textbf{\alph*)},resume*=problemas]
+\item Exiba os caminhos percorridos por todos os robôs que entraram no terreno de busca, ordenados crescentemente pela distância total percorrida;
+\end{enumerate}
+
+\noindent \textbf{COMPREENSÃO DO PROBLEMA E PLANEJAMENTO}: deve-se calcular as distâncias percorridas por todos os robôs, adicionando-as em uma tupla que será ordenada a partir das distâncias, impressa na tela e então retornada.
+
+Sendo assim, podemos criar as seguintes funções para solucionar o problema:
+\begin{enumerate}
+\item Função para juntar id, distância total e caminho percorrido de todos os robôs em uma lista de tuplas
+\item Função para ordenar essa lista pelas distâncias nas tuplas
+\end{enumerate}
+
+A primeira função simplesmente percorre as listas de ids, distâncias totais e caminhos, juntando elemento a elemento em uma tupla e concatenando em uma lista, de forma recursiva. A lista de distâncias totais é calculada utilizando a função \texttt{distancia\_total} do Problema A nas listas de pontos obtidas a partir da lista de robôs. Nas seções anteriores, discorre-se sobre a obtenção da lista de caminhos percorridos pelos robôs e da lista de IDs.
+
+Para a segunda, que é a principal função do problema, foi utilizado o método de ordenação \textit{merge sort}, em sua variação recursiva. Além disso, o \textit{merge sort} implementado recebe uma lista de tuplas, das quais os segundos elementos são utilizados como referência para a ordenação da lista. O segundo elemento da tupla, no caso deste problema, será a distância total do robô em questão.
+
+Posto isto, basta chamar a função de ordenação com a saída da primeira função e o Problema C estará solucionado.
+
+\section{Problema D}\label{problemaD}
+
+\begin{enumerate}[label=\textbf{\alph*)},resume*=problemas]
+\item Forneça a identidade do(s) robô(s) que conseguiu(ram) informar o maior número de vítimas (considerando que não há duplicação de identificação de vítima por um mesmo robô).
+\end{enumerate}
+
+\noindent \textbf{COMPREENSÃO DO PROBLEMA E PLANEJAMENTO}: deve-se calcular o número de vítimas que cada robô avistou e identificar o robô que avistou o maior número.
+Retornar mais de um robô caso o maior número seja repetido.
+
+Sendo assim, podemos criar as seguintes funções para solucionar o problema:
+\begin{enumerate}
+    \item Função para extrair o número de vítimas vistas em cada ponto passado por um robô
+    \item Função para somar elementos de uma lista  
+    \item Função que aplique essas duas últimas funções para todos os robôs da lista de entrada  
+    \item Função para extrair o maior número da lista obtida pelo último item  
+    \item Função para obter IDs dos robôs que obtiveram o máximo calculado anteriormente
+\end{enumerate}
+
+Para a primeira função, \texttt{lista\_vitimas\_robo}, podemos lançar mão da compreensão de lista mais uma vez para, em cada ocorrência (elemento) da lista de robôs, extrairmos o número de vítimas avistadas nessa ocorrência se o robô da tupla em questão tiver o id de entrada.
+
+A segunda, \texttt{soma\_lista}, é trivial e foi implementada diversas vezes durante o curso;
+
+A terceira, \texttt{total\_vitimas\_robo}, como já mencionado, apenas utiliza a primeira função para obter a lista com vítimas avistadas por um robô e, com a segunda função, soma a lista para calcular o número total de vítimas avistadas por um robô.
+
+A quarta, \texttt{max\_lista}, utiliza a função \texttt{reduce} com a função \texttt{maior} (que compara dois elementos e retorna o maior) e a lista de entrada para comparar elemento por elemento na lista, retornando o maior.
+
+Agora, com a terceira, podemos utilizar a função \texttt{map} para extrair todas as vítimas de cada robô da lista de robôs, com auxílio da função \texttt{ids\_robos} e uma função anônima. Teremos então uma lista com o total de vítimas de cada robô. Utilizando a função \texttt{indices\_maximos} do Problema B, que retornará os índices de todos os elementos que coincidam com o maior elemento, podemos acessar a lista de ids com esses índices e retornar os ids dos robôs que avistaram o maior número de vítimas (se houver mais de um), solucionando, portanto, o Problema D.
