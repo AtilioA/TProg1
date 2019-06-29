@@ -15,6 +15,13 @@ from roboAux import tupla2
 
 
 def tupla_caminhos_percorridos(listaRobos, ids, distsTotais, caminhos):
+    """ Dada uma lista de robôs, seus ids, distâncias totais percorridas e caminhos percorridos
+    pelos robôs, retorna uma lista de tuplas formatada como a questão C exemplifica
+    Escopo: Função global paramétrica
+    Dados de entrada: Lista de robôs, seus ids, distâncias totais e caminhos
+    Dados de saída: Uma lista de tuplas formatadas como no exemplo de entrada da questão C
+    """
+
     if not ids:
         return ids
     elif not distsTotais:
